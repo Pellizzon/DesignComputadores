@@ -1,0 +1,125 @@
+|atividade0_1
+SW[0] => equacao:EQU.x[0]
+SW[1] => equacao:EQU.x[1]
+SW[2] => equacao:EQU.x[2]
+SW[3] => equacao:EQU.x[3]
+SW[4] => ~NO_FANOUT~
+SW[5] => ~NO_FANOUT~
+SW[6] => equacao:EQU.y[0]
+SW[7] => equacao:EQU.y[1]
+SW[8] => equacao:EQU.y[2]
+SW[9] => equacao:EQU.y[3]
+LEDR[0] << equacao:EQU.dataOUT[0]
+LEDR[1] << equacao:EQU.dataOUT[1]
+LEDR[2] << equacao:EQU.dataOUT[2]
+LEDR[3] << equacao:EQU.dataOUT[3]
+LEDR[4] << <GND>
+LEDR[5] << <GND>
+LEDR[6] << <GND>
+LEDR[7] << <GND>
+LEDR[8] << <GND>
+LEDR[9] << <GND>
+
+
+|atividade0_1|equacao:EQU
+x[0] => somadorGenerico:XVezes2.entradaA[0]
+x[0] => somadorGenerico:XVezes2.entradaB[0]
+x[0] => somadorGenerico:XVezes3.entradaB[0]
+x[1] => somadorGenerico:XVezes2.entradaA[1]
+x[1] => somadorGenerico:XVezes2.entradaB[1]
+x[1] => somadorGenerico:XVezes3.entradaB[1]
+x[2] => somadorGenerico:XVezes2.entradaA[2]
+x[2] => somadorGenerico:XVezes2.entradaB[2]
+x[2] => somadorGenerico:XVezes3.entradaB[2]
+x[3] => somadorGenerico:XVezes2.entradaA[3]
+x[3] => somadorGenerico:XVezes2.entradaB[3]
+x[3] => somadorGenerico:XVezes3.entradaB[3]
+y[0] => somadorGenerico:YVezes2.entradaA[0]
+y[0] => somadorGenerico:YVezes2.entradaB[0]
+y[1] => somadorGenerico:YVezes2.entradaA[1]
+y[1] => somadorGenerico:YVezes2.entradaB[1]
+y[2] => somadorGenerico:YVezes2.entradaA[2]
+y[2] => somadorGenerico:YVezes2.entradaB[2]
+y[3] => somadorGenerico:YVezes2.entradaA[3]
+y[3] => somadorGenerico:YVezes2.entradaB[3]
+dataOUT[0] <= somadorGenerico:Total.saida[0]
+dataOUT[1] <= somadorGenerico:Total.saida[1]
+dataOUT[2] <= somadorGenerico:Total.saida[2]
+dataOUT[3] <= somadorGenerico:Total.saida[3]
+
+
+|atividade0_1|equacao:EQU|somadorGenerico:XVezes2
+entradaA[0] => Add0.IN4
+entradaA[1] => Add0.IN3
+entradaA[2] => Add0.IN2
+entradaA[3] => Add0.IN1
+entradaB[0] => Add0.IN8
+entradaB[1] => Add0.IN7
+entradaB[2] => Add0.IN6
+entradaB[3] => Add0.IN5
+saida[0] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+saida[1] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+saida[2] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+saida[3] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|atividade0_1|equacao:EQU|somadorGenerico:XVezes3
+entradaA[0] => Add0.IN4
+entradaA[1] => Add0.IN3
+entradaA[2] => Add0.IN2
+entradaA[3] => Add0.IN1
+entradaB[0] => Add0.IN8
+entradaB[1] => Add0.IN7
+entradaB[2] => Add0.IN6
+entradaB[3] => Add0.IN5
+saida[0] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+saida[1] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+saida[2] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+saida[3] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|atividade0_1|equacao:EQU|somadorGenerico:YVezes2
+entradaA[0] => Add0.IN4
+entradaA[1] => Add0.IN3
+entradaA[2] => Add0.IN2
+entradaA[3] => Add0.IN1
+entradaB[0] => Add0.IN8
+entradaB[1] => Add0.IN7
+entradaB[2] => Add0.IN6
+entradaB[3] => Add0.IN5
+saida[0] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+saida[1] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+saida[2] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+saida[3] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|atividade0_1|equacao:EQU|subtratorGenerico:Subtracao
+entradaA[0] => Add0.IN8
+entradaA[1] => Add0.IN7
+entradaA[2] => Add0.IN6
+entradaA[3] => Add0.IN5
+entradaB[0] => Add0.IN4
+entradaB[1] => Add0.IN3
+entradaB[2] => Add0.IN2
+entradaB[3] => Add0.IN1
+saida[0] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+saida[1] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+saida[2] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+saida[3] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|atividade0_1|equacao:EQU|somadorGenerico:Total
+entradaA[0] => Add0.IN4
+entradaA[1] => Add0.IN3
+entradaA[2] => Add0.IN2
+entradaA[3] => Add0.IN1
+entradaB[0] => Add0.IN8
+entradaB[1] => Add0.IN7
+entradaB[2] => Add0.IN6
+entradaB[3] => Add0.IN5
+saida[0] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+saida[1] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+saida[2] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+saida[3] <= Add0.DB_MAX_OUTPUT_PORT_TYPE
+
+

@@ -1,0 +1,203 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/mathe/OneDrive/Área de Trabalho/Quartus/Aula2/simulation/qsim
+Eatividade1
+Z0 w1598977192
+Z1 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 ^K2eeK[IVbX]]MLcdOEI91
+Z2 DPx8 cyclonev 19 cyclonev_components 0 22 GFL[QAd@dAZF:`jjOGn9>2
+Z3 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 3dzZ?YU_4FC5UU0cTXRET1
+Z4 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+Z5 DPx6 altera 11 dffeas_pack 0 22 H5F:RRfLz82T3`4>@b7mS3
+Z6 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+Z7 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z8 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+Z9 DPx6 altera 28 altera_primitives_components 0 22 VSD=32;3391kSOd?PDZYj3
+!i122 8
+Z10 dC:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula2/simulation/qsim
+Z11 8atividade1.vho
+Z12 Fatividade1.vho
+l0
+Z13 L39 1
+VRWO1giIC<fkOd32oW>9Bd2
+!s100 Fm:@LX[;zK4Gfk1FUVL5b2
+Z14 OV;C;2020.1;71
+32
+Z15 !s110 1598977193
+!i10b 1
+Z16 !s108 1598977193.000000
+Z17 !s90 -work|work|atividade1.vho|
+Z18 !s107 atividade1.vho|
+!i113 1
+Z19 o-work work
+Z20 tExplicit 1 CvgOpt 0
+Astructure
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+DEx4 work 10 atividade1 0 22 RWO1giIC<fkOd32oW>9Bd2
+!i122 8
+l160
+L78 1093
+VVJ>PK<3lCdYjH?gdZ53JQ2
+!s100 kZODXOGT:[2kZ[2Pe09gY2
+R14
+32
+R15
+!i10b 1
+R16
+R17
+R18
+!i113 1
+R19
+R20
+Eatividade1_vhd_vec_tst
+Z21 w1598977190
+R7
+R8
+!i122 9
+R10
+Z22 8Waveform1.vwf.vht
+Z23 FWaveform1.vwf.vht
+l0
+Z24 L32 1
+VWB=MQC>1VcH[^n9Vj]GTY0
+!s100 gL11;VT^[S`EWzFS4U38[2
+R14
+32
+R15
+!i10b 1
+R16
+Z25 !s90 -work|work|Waveform1.vwf.vht|
+Z26 !s107 Waveform1.vwf.vht|
+!i113 1
+R19
+R20
+Aatividade1_arch
+R7
+R8
+Z27 DEx4 work 22 atividade1_vhd_vec_tst 0 22 WB=MQC>1VcH[^n9Vj]GTY0
+!i122 9
+l51
+Z28 L34 3268
+Z29 VYG;jR1fJfQE_P=5]o?dWN0
+Z30 !s100 =eTjajzZ2Fc=V?bmTn?DJ0
+R14
+32
+R15
+!i10b 1
+R16
+R25
+R26
+!i113 1
+R19
+R20
+Eregistradorgenerico
+Z31 w1598443515
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+!i122 4
+R10
+R11
+R12
+l0
+R13
+VFlcSe]9AXekC681i1PV8_1
+!s100 COMMc]jUbHcP:VG_=J;N<0
+R14
+32
+Z32 !s110 1598443516
+!i10b 1
+Z33 !s108 1598443516.000000
+R17
+R18
+!i113 1
+R19
+R20
+Astructure
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+DEx4 work 19 registradorgenerico 0 22 FlcSe]9AXekC681i1PV8_1
+!i122 4
+l115
+L71 488
+VZikFNi1hzmfNlWU18M5;>0
+!s100 XjCd:^B1KG1:?KzhEIV7V3
+R14
+32
+R32
+!i10b 1
+R33
+R17
+R18
+!i113 1
+R19
+R20
+Eregistradorgenerico_vhd_vec_tst
+Z34 w1598443513
+R7
+R8
+!i122 5
+R10
+Z35 8Waveform.vwf.vht
+Z36 FWaveform.vwf.vht
+l0
+R24
+V2bihSOL48Ke6n40]2kPVC3
+!s100 cFfXg;bbR=i@Q^SlNKCIc2
+R14
+32
+Z37 !s110 1598443517
+!i10b 1
+Z38 !s108 1598443517.000000
+Z39 !s90 -work|work|Waveform.vwf.vht|
+Z40 !s107 Waveform.vwf.vht|
+!i113 1
+R19
+R20
+Aregistradorgenerico_arch
+R7
+R8
+DEx4 work 31 registradorgenerico_vhd_vec_tst 0 22 2bihSOL48Ke6n40]2kPVC3
+!i122 5
+l51
+L34 544
+VaPToVO^UT[>]]B;LHF4RV3
+!s100 Hb8DlOS4nLU:K5JWaX__I3
+R14
+32
+R37
+!i10b 1
+R38
+R39
+R40
+!i113 1
+R19
+R20

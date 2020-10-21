@@ -1,0 +1,7 @@
+{
+	"common_dir" : "/home/paulo/Dropbox/Insper/fpgaProjects/Aulas_2020s2/Aula03/",
+	"acds_version" : "Version 20.1.0",
+	"platform" : "linux",
+	"os" : "Ubuntu 18.04.5",
+	"qpf" : "Aula03.qpf"
+}

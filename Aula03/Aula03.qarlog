@@ -1,0 +1,25 @@
+Quartus Prime Archive log --	C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/Aula03.qarlog
+
+Archive:	C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/Aula03.qar
+Date:		Tue Sep 22 20:53:28 2020
+Quartus Prime		20.1.0 Build 711 06/05/2020 SJ Lite Edition
+
+	=========== Files Selected: ===========
+C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/Aula03.qpf
+C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/Aula03.qsf
+C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/Aula03.sdc
+C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/Aula03.vhd
+C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/MEF.vhd
+C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/Waveform.vwf
+C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/Waveform1.vwf
+C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/Waveform2.vwf
+C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/assignment_defaults.qdf
+C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/edgeDetector.vhd
+C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/memoria.vhd
+C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/muxGenerico2.vhd
+C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/registradorGenerico.vhd
+C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/unsigned_adder_subtractor.vhd
+	======= Total: 14 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.

@@ -1,0 +1,107 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula03/simulation/qsim
+Eaula03
+Z1 w1599143585
+Z2 DPx8 cyclonev 18 cyclonev_atom_pack 0 22 ^K2eeK[IVbX]]MLcdOEI91
+Z3 DPx8 cyclonev 19 cyclonev_components 0 22 GFL[QAd@dAZF:`jjOGn9>2
+Z4 DPx12 altera_lnsim 23 altera_lnsim_components 0 22 3dzZ?YU_4FC5UU0cTXRET1
+Z5 DPx4 ieee 16 vital_primitives 0 22 G>kiXP8Q9dRClKfK1Zn7j1
+Z6 DPx6 altera 11 dffeas_pack 0 22 H5F:RRfLz82T3`4>@b7mS3
+Z7 DPx4 ieee 12 vital_timing 0 22 J>EBealN09f8GzldA[z2>3
+Z8 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z9 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+Z10 DPx6 altera 28 altera_primitives_components 0 22 VSD=32;3391kSOd?PDZYj3
+!i122 10
+R0
+Z11 8Aula03.vho
+Z12 FAula03.vho
+l0
+L39 1
+VhiHA<7OKMWGG24omDMEj50
+!s100 c`^z=5oDIjQKL^AN[6ZF02
+Z13 OV;C;2020.1;71
+32
+Z14 !s110 1599143587
+!i10b 1
+Z15 !s108 1599143587.000000
+Z16 !s90 -work|work|Aula03.vho|
+Z17 !s107 Aula03.vho|
+!i113 1
+Z18 o-work work
+Z19 tExplicit 1 CvgOpt 0
+Astructure
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+R10
+DEx4 work 6 aula03 0 22 hiHA<7OKMWGG24omDMEj50
+!i122 10
+l137
+L62 1075
+VM:@2:i8bH<V9P7cTBW71z3
+!s100 =o57W577j]XjQlcaKb[4L3
+R13
+32
+R14
+!i10b 1
+R15
+R16
+R17
+!i113 1
+R18
+R19
+Eaula03_vhd_vec_tst
+Z20 w1599143584
+R8
+R9
+!i122 11
+R0
+Z21 8Waveform2.vwf.vht
+Z22 FWaveform2.vwf.vht
+l0
+L32 1
+V]3F8]D1^iSV`c@WzVcjPb1
+!s100 gb?[P4znM`MR5g1YN<OF;0
+R13
+32
+R14
+!i10b 1
+R15
+Z23 !s90 -work|work|Waveform2.vwf.vht|
+Z24 !s107 Waveform2.vwf.vht|
+!i113 1
+R18
+R19
+Aaula03_arch
+R8
+R9
+Z25 DEx4 work 18 aula03_vhd_vec_tst 0 22 ]3F8]D1^iSV`c@WzVcjPb1
+!i122 11
+l47
+Z26 L34 46
+Z27 Vg]dFl:gHX^05J5Z6j4A;l3
+Z28 !s100 cd^oLGgbE8VWYL1mICbRI0
+R13
+32
+R14
+!i10b 1
+R15
+R23
+R24
+!i113 1
+R18
+R19

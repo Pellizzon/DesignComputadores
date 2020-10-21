@@ -1,0 +1,69 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'fpga_reset_n'
+Slack : 74.850
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'fpga_reset_n'
+Slack : 0.652
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
+Slack : 8.943
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'fpga_reset_n'
+Slack : 9.675
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Setup 'fpga_reset_n'
+Slack : 74.686
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'fpga_reset_n'
+Slack : 0.700
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : 8.896
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'fpga_reset_n'
+Slack : 9.745
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Setup 'fpga_reset_n'
+Slack : 77.428
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'fpga_reset_n'
+Slack : 0.218
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
+Slack : 8.859
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'fpga_reset_n'
+Slack : 10.000
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Setup 'fpga_reset_n'
+Slack : 77.589
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'fpga_reset_n'
+Slack : 0.207
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : 8.811
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'fpga_reset_n'
+Slack : 10.000
+TNS   : 0.000
+
+------------------------------------------------------------

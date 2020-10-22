@@ -67,7 +67,6 @@ BEGIN
          addrWidth       => ROMAddrWidth,
          memoryAddrWidth => 6
          ) PORT MAP(
-         clk      => clk,
          Endereco => saidaPC,
          Dado     => instrucao
       );

@@ -1,6 +1,5 @@
 |FD
 clk => registradorgenerico:PC.CLK
-clk => rommips:ROM.clk
 clk => bancoregistradores:BancoRegistradores.clk
 
 
@@ -235,7 +234,6 @@ RST => DOUT[31]~reg0.ACLR
 
 
 |FD|ROMMIPS:ROM
-clk => ~NO_FANOUT~
 Endereco[0] => ~NO_FANOUT~
 Endereco[1] => ~NO_FANOUT~
 Endereco[2] => memROM.RADDR

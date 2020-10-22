@@ -8,7 +8,6 @@ ENTITY ROMMIPS IS
     addrWidth       : NATURAL := 32;
     memoryAddrWidth : NATURAL := 6); -- 64 posicoes de 32 bits cada
   PORT (
-    clk      : IN STD_LOGIC;
     Endereco : IN STD_LOGIC_VECTOR (addrWidth - 1 DOWNTO 0);
     Dado     : OUT STD_LOGIC_VECTOR (dataWidth - 1 DOWNTO 0));
 END ENTITY;

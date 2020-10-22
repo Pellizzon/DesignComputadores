@@ -6,15 +6,17 @@ ENTITY UC IS
   PORT (
     opCode          : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
     funct           : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
-    palavraControle : OUT STD_LOGIC_VECTOR(4 DOWNTO 0) := 5x"00"
+    palavraControle : OUT STD_LOGIC_VECTOR(6 DOWNTO 0) := 7x"00"
   );
 END ENTITY;
 
 ARCHITECTURE comportamento OF UC IS
 
-  ALIAS enablePC  : std_logic IS palavraControle(4);
-  ALIAS writeRegC : std_logic IS palavraControle(3);
-  ALIAS aluOp     : std_logic_vector(2 DOWNTO 0) IS palavraControle(2 DOWNTO 0);
+  ALIAS enablePC  : std_logic IS palavraControle(6);
+  ALIAS writeRegC : std_logic IS palavraControle(5);
+  ALIAS aluOp     : std_logic_vector(2 DOWNTO 0) IS palavraControle(4 DOWNTO 2);
+  ALIAS memRd     : std_logic IS palavraControle(1);
+  ALIAS memWr     : std_logic IS palavraControle(0);
 
 BEGIN
 
@@ -24,9 +26,14 @@ BEGIN
 
   aluOP <= "000" WHEN opCode = 6x"00" AND funct = 6x"20" ELSE -- add
   "001" WHEN opCode = 6x"00" AND funct = 6x"22" ELSE          -- sub
-  "010" WHEN opCode = 6x"00" AND funct = 6x"22" ELSE          -- and
-  "011" WHEN opCode = 6x"00" AND funct = 6x"22" ELSE          -- or
-  "100" WHEN opCode = 6x"00" AND funct = 6x"22" ELSE          -- slt
+  "010" WHEN opCode = 6x"00" AND funct = 6x"24" ELSE          -- and
+  "011" WHEN opCode = 6x"00" AND funct = 6x"25" ELSE          -- or
+  "100" WHEN opCode = 6x"00" AND funct = 6x"2A" ELSE          -- slt
   "111";
+  
+  memRd <= '0' WHEN opCode = 6x"00" ELSE 
+  '1';
+  memWr <= '0' WHEN opCode = 6x"00" ELSE 
+  '1';
   
 END ARCHITECTURE;

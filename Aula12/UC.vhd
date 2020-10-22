@@ -6,13 +6,12 @@ ENTITY UC IS
   PORT (
     opCode          : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
     funct           : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
-    palavraControle : OUT STD_LOGIC_VECTOR(6 DOWNTO 0) := 7x"00"
+    palavraControle : OUT STD_LOGIC_VECTOR(5 DOWNTO 0) := 6x"00"
   );
 END ENTITY;
 
 ARCHITECTURE comportamento OF UC IS
 
-  ALIAS enablePC  : std_logic IS palavraControle(6);
   ALIAS writeRegC : std_logic IS palavraControle(5);
   ALIAS aluOp     : std_logic_vector(2 DOWNTO 0) IS palavraControle(4 DOWNTO 2);
   ALIAS memRd     : std_logic IS palavraControle(1);
@@ -20,7 +19,6 @@ ARCHITECTURE comportamento OF UC IS
 
 BEGIN
 
-  -- enablePc <= ???
   writeRegC <= '1' WHEN opCode = 6x"00" ELSE
   '0';
 

@@ -32,9 +32,8 @@ ARCHITECTURE rtl OF FD IS
    ALIAS shamt  : std_logic_vector(4 DOWNTO 0) IS instrucao(10 DOWNTO 6);
    ALIAS funct  : std_logic_vector(5 DOWNTO 0) IS instrucao(5 DOWNTO 0);
 
-   SIGNAL palavraControle : std_logic_vector(6 DOWNTO 0);
+   SIGNAL palavraControle : std_logic_vector(5 DOWNTO 0);
 
-   ALIAS enablePC  : std_logic IS palavraControle(6);
    ALIAS writeRegC : std_logic IS palavraControle(5);
    ALIAS aluOp     : std_logic_vector(2 DOWNTO 0) IS palavraControle(4 DOWNTO 2);
    ALIAS memRd     : std_logic IS palavraControle(1);
@@ -57,7 +56,7 @@ BEGIN
          ) PORT MAP(
          DIN    => ProxPC,
          DOUT   => saidaPC,
-         ENABLE => enablePC,
+         ENABLE => '1',
          CLK    => clk,
          RST    => '0'
       );

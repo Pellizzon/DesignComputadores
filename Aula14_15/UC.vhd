@@ -7,42 +7,47 @@ ENTITY UC IS
   PORT (
     opCode          : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
     funct           : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
-    palavraControle : OUT STD_LOGIC_VECTOR(9 DOWNTO 0) := "0000000000"
+    palavraControle : OUT STD_LOGIC_VECTOR(10 DOWNTO 0) := "00000000000"
   );
 END ENTITY;
 
 ARCHITECTURE comportamento OF UC IS
 
-  ALIAS BEQ                : STD_LOGIC IS palavraControle(9);
-  ALIAS selDataToWriteReg3 : STD_LOGIC IS palavraControle(8);
-  ALIAS selEntradaB_ULA    : STD_LOGIC IS palavraControle(7);
-  ALIAS selEndRegC         : STD_LOGIC IS palavraControle(6);
-  ALIAS writeRegC          : STD_LOGIC IS palavraControle(5);
-  ALIAS aluOp              : STD_LOGIC_VECTOR(2 DOWNTO 0) IS palavraControle(4 DOWNTO 2);
-  ALIAS memRd              : STD_LOGIC IS palavraControle(1);
-  ALIAS memWr              : STD_LOGIC IS palavraControle(0);
+  ALIAS selMUX_PC      : STD_LOGIC IS palavraControle(10);
+  ALIAS BEQ            : STD_LOGIC IS palavraControle(9);
+  ALIAS selULA_MEM     : STD_LOGIC IS palavraControle(8);
+  ALIAS selMux_Rt_Imed : STD_LOGIC IS palavraControle(7);
+  ALIAS selRt_Rd       : STD_LOGIC IS palavraControle(6);
+  ALIAS writeRegC      : STD_LOGIC IS palavraControle(5);
+  ALIAS aluOp          : STD_LOGIC_VECTOR(2 DOWNTO 0) IS palavraControle(4 DOWNTO 2);
+  ALIAS memRd          : STD_LOGIC IS palavraControle(1);
+  ALIAS memWr          : STD_LOGIC IS palavraControle(0);
 
 BEGIN
 
-  BEQ <= '1' WHEN opCode = opCodeBEQ ELSE
+  selMUX_PC <= '1' WHEN opCode = opCodeTipoJ ELSE
+    '0';
+
+    BEQ <= '1' WHEN opCode = opCodeBEQ ELSE
     -- '0' WHEN opCode = opCodeTipoR ELSE
     -- '0' WHEN opCode = opCodeSW ELSE
     -- '0' WHEN opCode = opCodeLW ELSE
+    -- '0' WHEN opCode = opCodeTipoJ ELSE
     '0';
 
-  selDataToWriteReg3 <= '0' WHEN opCode = opCodeTipoR ELSE
+  selULA_MEM <= '0' WHEN opCode = opCodeTipoR ELSE
     -- '1' WHEN opCode = opCodeSW ELSE
     -- '1' WHEN opCode = opCodeLW ELSE
     -- '1' WHEN opCode = opCodeBEQ ELSE
     '1';
 
-  selEntradaB_ULA <= '0' WHEN opCode = opCodeTipoR ELSE
+  selMux_Rt_Imed <= '0' WHEN opCode = opCodeTipoR ELSE
     -- '1' WHEN opCode = opCodeSW ELSE
     -- '1' WHEN opCode = opCodeLW ELSE
     -- '1' WHEN opCode = opCodeBEQ ELSE
     '1';
 
-  selEndRegC <= '0' WHEN opCode = opCodeTipoR ELSE
+  selRt_Rd <= '0' WHEN opCode = opCodeTipoR ELSE
     -- '1' WHEN opCode = opCodeSW ELSE
     -- '1' WHEN opCode = opCodeLW ELSE
     -- '1' WHEN opCode = opCodeBEQ ELSE

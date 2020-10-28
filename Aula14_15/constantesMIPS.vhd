@@ -10,7 +10,7 @@ PACKAGE constantesMIPS IS
     --  subtype TypeWord is unsigned( 31 downto 0 );
     --  type    TypeArrayWord is array (natural range <>) of unsigned( 31 downto 0 );
     --  constant FUNCT_WIDTH : natural := 6;
-
+    CONSTANT IMED_JMP_WIDTH     : NATURAL := 26;
     CONSTANT IMED_WIDTH         : NATURAL := 16;
     CONSTANT SHAMT_WIDTH        : NATURAL := 5;
     CONSTANT FUNCT_WIDTH        : NATURAL := 6;

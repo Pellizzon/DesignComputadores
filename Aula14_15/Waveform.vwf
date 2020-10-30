@@ -1,0 +1,3019 @@
+/*<simulation_settings>
+<ftestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off Aula14 -c Aula14 --vector_source="C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula14_15/Waveform.vwf" --testbench_file="C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula14_15/simulation/qsim/Waveform.vwf.vht"</ftestbench_cmd>
+<ttestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off Aula14 -c Aula14 --vector_source="C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula14_15/Waveform.vwf" --testbench_file="C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula14_15/simulation/qsim/Waveform.vwf.vht"</ttestbench_cmd>
+<fnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory="C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula14_15/simulation/qsim/" Aula14 -c Aula14</fnetlist_cmd>
+<tnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=off --flatten_buses=off --timescale=1ps --tool=modelsim_oem --format=vhdl --output_directory="C:/Users/mathe/OneDrive/Documentos/6Periodo/designComputadores/Aula14_15/simulation/qsim/" Aula14 -c Aula14</tnetlist_cmd>
+<modelsim_script>onerror {exit -code 1}
+vlib work
+vcom -work work Aula14.vho
+vcom -work work Waveform.vwf.vht
+vsim  -c -t 1ps -L cyclonev -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.FD_vhd_vec_tst
+vcd file -direction Aula14.msim.vcd
+vcd add -internal FD_vhd_vec_tst/*
+vcd add -internal FD_vhd_vec_tst/i1/*
+proc simTimestamp {} {
+    echo "Simulation time: $::now ps"
+    if { [string equal running [runStatus]] } {
+        after 2500 simTimestamp
+    }
+}
+after 2500 simTimestamp
+run -all
+quit -f
+</modelsim_script>
+<modelsim_script_timing>onerror {exit -code 1}
+vlib work
+vcom -work work Aula14.vho
+vcom -work work Waveform.vwf.vht
+vsim -novopt -c -t 1ps -sdfmax FD_vhd_vec_tst/i1=Aula14_vhd.sdo -L cyclonev -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.FD_vhd_vec_tst
+vcd file -direction Aula14.msim.vcd
+vcd add -internal FD_vhd_vec_tst/*
+vcd add -internal FD_vhd_vec_tst/i1/*
+proc simTimestamp {} {
+    echo "Simulation time: $::now ps"
+    if { [string equal running [runStatus]] } {
+        after 2500 simTimestamp
+    }
+}
+after 2500 simTimestamp
+run -all
+quit -f
+</modelsim_script_timing>
+<hdl_lang>vhdl</hdl_lang>
+</simulation_settings>*/
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+
+/*
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+*/
+
+HEADER
+{
+	VERSION = 1;
+	TIME_UNIT = ns;
+	DATA_OFFSET = 0.0;
+	DATA_DURATION = 240.0;
+	SIMULATION_TIME = 0.0;
+	GRID_PHASE = 0.0;
+	GRID_PERIOD = 10.0;
+	GRID_DUTY_CYCLE = 50;
+}
+
+SIGNAL("barramentoDadosEscrita")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 32;
+	LSB_INDEX = 0;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("barramentoDadosEscrita[31]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[30]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[29]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[28]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[27]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[26]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[25]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[24]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[23]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[22]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[21]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[20]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[19]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[18]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[17]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[16]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[15]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[14]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[13]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[12]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[11]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[10]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[9]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[8]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[7]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[6]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[5]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[4]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosEscrita[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoDadosEscrita";
+}
+
+SIGNAL("barramentoDadosLeitura")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 32;
+	LSB_INDEX = 0;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("barramentoDadosLeitura[31]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[30]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[29]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[28]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[27]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[26]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[25]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[24]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[23]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[22]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[21]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[20]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[19]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[18]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[17]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[16]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[15]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[14]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[13]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[12]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[11]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[10]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[9]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[8]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[7]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[6]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[5]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[4]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoDadosLeitura[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "barramentoDadosLeitura";
+}
+
+SIGNAL("barramentoEnderecos")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 32;
+	LSB_INDEX = 0;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("barramentoEnderecos[31]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[30]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[29]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[28]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[27]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[26]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[25]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[24]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[23]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[22]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[21]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[20]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[19]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[18]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[17]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[16]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[15]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[14]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[13]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[12]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[11]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[10]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[9]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[8]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[7]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[6]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[5]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[4]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("barramentoEnderecos[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "barramentoEnderecos";
+}
+
+SIGNAL("clk")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("habEscritaMEM")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("habLeituraMEM")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[31]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[30]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[29]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[28]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[27]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[26]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[25]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[24]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[23]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[22]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[21]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[20]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[19]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[18]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[17]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[16]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[15]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[14]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[13]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[12]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[11]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[10]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[9]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[8]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[7]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[6]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[5]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[4]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosEscrita[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[31]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[30]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[29]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[28]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[27]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[26]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[25]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[24]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[23]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[22]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[21]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[20]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[19]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[18]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[17]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[16]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[15]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[14]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[13]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[12]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[11]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[10]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[9]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[8]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[7]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[6]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[5]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[4]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoDadosLeitura[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[31]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[30]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[29]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[28]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[27]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[26]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[25]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[24]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[23]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[22]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[21]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[20]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[19]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[18]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[17]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[16]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[15]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[14]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[13]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[12]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[11]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[10]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[9]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[8]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[7]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[6]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[5]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[4]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("barramentoEnderecos[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("clk")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 1 FOR 10.0;
+		NODE
+		{
+			REPEAT = 11;
+			LEVEL 0 FOR 10.0;
+			LEVEL 1 FOR 10.0;
+		}
+		LEVEL 0 FOR 10.0;
+	}
+}
+
+TRANSITION_LIST("habEscritaMEM")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+TRANSITION_LIST("habLeituraMEM")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 240.0;
+	}
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 0;
+	TREE_LEVEL = 0;
+	CHILDREN = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[31]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 1;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[30]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 2;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[29]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 3;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[28]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 4;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[27]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 5;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[26]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 6;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[25]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 7;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[24]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 8;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[23]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 9;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[22]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 10;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[21]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 11;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[20]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 12;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[19]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 13;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[18]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 14;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[17]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 15;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[16]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 16;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[15]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 17;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[14]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 18;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[13]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 19;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[12]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 20;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[11]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 21;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[10]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 22;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[9]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 23;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[8]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 24;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[7]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 25;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[6]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 26;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[5]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 27;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[4]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 28;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 29;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 30;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 31;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosEscrita[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 32;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 33;
+	TREE_LEVEL = 0;
+	CHILDREN = 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[31]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 34;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[30]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 35;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[29]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 36;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[28]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 37;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[27]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 38;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[26]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 39;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[25]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 40;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[24]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 41;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[23]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 42;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[22]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 43;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[21]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 44;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[20]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 45;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[19]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 46;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[18]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 47;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[17]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 48;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[16]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 49;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[15]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 50;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[14]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 51;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[13]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 52;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[12]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 53;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[11]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 54;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[10]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 55;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[9]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 56;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[8]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 57;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[7]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 58;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[6]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 59;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[5]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 60;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[4]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 61;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 62;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 63;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 64;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoDadosLeitura[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 65;
+	TREE_LEVEL = 1;
+	PARENT = 33;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 66;
+	TREE_LEVEL = 0;
+	CHILDREN = 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[31]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 67;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[30]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 68;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[29]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 69;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[28]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 70;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[27]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 71;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[26]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 72;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[25]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 73;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[24]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 74;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[23]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 75;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[22]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 76;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[21]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 77;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[20]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 78;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[19]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 79;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[18]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 80;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[17]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 81;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[16]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 82;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[15]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 83;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[14]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 84;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[13]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 85;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[12]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 86;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[11]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 87;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[10]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 88;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[9]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 89;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[8]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 90;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[7]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 91;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[6]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 92;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[5]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 93;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[4]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 94;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 95;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 96;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 97;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "barramentoEnderecos[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 98;
+	TREE_LEVEL = 1;
+	PARENT = 66;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "clk";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 99;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "habEscritaMEM";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 100;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "habLeituraMEM";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 101;
+	TREE_LEVEL = 0;
+}
+
+TIME_BAR
+{
+	TIME = 10000;
+	MASTER = TRUE;
+}
+;

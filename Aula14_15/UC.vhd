@@ -7,7 +7,7 @@ ENTITY UC IS
   PORT (
     opCode          : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
     funct           : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
-    palavraControle : OUT STD_LOGIC_VECTOR(10 DOWNTO 0) := "00000000000"
+    palavraControle : OUT STD_LOGIC_VECTOR(10 DOWNTO 0)
   );
 END ENTITY;
 
@@ -28,30 +28,30 @@ BEGIN
   selMUX_PC <= '1' WHEN opCode = opCodeTipoJ ELSE
     '0';
 
-    BEQ <= '1' WHEN opCode = opCodeBEQ ELSE
-    -- '0' WHEN opCode = opCodeTipoR ELSE
-    -- '0' WHEN opCode = opCodeSW ELSE
-    -- '0' WHEN opCode = opCodeLW ELSE
-    -- '0' WHEN opCode = opCodeTipoJ ELSE
+  BEQ <= '1' WHEN opCode = opCodeBEQ ELSE
+    --  '0' WHEN opCode = opCodeTipoR ELSE
+    --  '0' WHEN opCode = opCodeSW ELSE
+    --  '0' WHEN opCode = opCodeLW ELSE
+    --  '0' WHEN opCode = opCodeTipoJ ELSE
     '0';
 
-  selULA_MEM <= '0' WHEN opCode = opCodeTipoR ELSE
-    -- '1' WHEN opCode = opCodeSW ELSE
-    -- '1' WHEN opCode = opCodeLW ELSE
-    -- '1' WHEN opCode = opCodeBEQ ELSE
-    '1';
+  selULA_MEM <= '1' WHEN opCode = opCodeLW ELSE
+    --  '0' WHEN opCode = opCodeTipoR ELSE
+    --	'0' WHEN opCode = opCodeBEQ ELSE
+    --  '0' WHEN opCode = opCodeSW ELSE
+    '0';
 
-  selMux_Rt_Imed <= '0' WHEN opCode = opCodeTipoR ELSE
-    -- '1' WHEN opCode = opCodeSW ELSE
-    -- '1' WHEN opCode = opCodeLW ELSE
-    -- '1' WHEN opCode = opCodeBEQ ELSE
-    '1';
+  selMux_Rt_Imed <= '1' WHEN opCode = opCodeSW ELSE
+    '1' WHEN opCode = opCodeLW ELSE
+    --	 '0' WHEN opCode = opCodeTipoR ELSE
+    --  '0' WHEN opCode = opCodeBEQ ELSE
+    '0';
 
-  selRt_Rd <= '0' WHEN opCode = opCodeTipoR ELSE
+  selRt_Rd <= '1' WHEN opCode = opCodeTipoR ELSE
     -- '1' WHEN opCode = opCodeSW ELSE
     -- '1' WHEN opCode = opCodeLW ELSE
     -- '1' WHEN opCode = opCodeBEQ ELSE
-    '1';
+    '0';
 
   writeRegC <= '1' WHEN opCode = opCodeTipoR ELSE
     '1' WHEN opCode = opCodeLW ELSE

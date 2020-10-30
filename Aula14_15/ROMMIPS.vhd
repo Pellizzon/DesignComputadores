@@ -13,15 +13,14 @@ ENTITY ROMMIPS IS
 END ENTITY;
 
 ARCHITECTURE assincrona OF ROMMIPS IS
-  TYPE blocoMemoria IS ARRAY(0 TO 2 ** memoryAddrWidth - 1) OF std_logic_vector(dataWidth - 1 DOWNTO 0);
+  TYPE blocoMemoria IS ARRAY(0 TO 2 ** memoryAddrWidth - 1) OF STD_LOGIC_VECTOR(dataWidth - 1 DOWNTO 0);
 
-  SIGNAL memROM           : blocoMemoria;
-  ATTRIBUTE ram_init_file : STRING;
-  ATTRIBUTE ram_init_file OF memROM :
-  SIGNAL IS "ROMcontent.mif";
+  SIGNAL memROM                     : blocoMemoria;
+  ATTRIBUTE ram_init_file           : STRING;
+  ATTRIBUTE ram_init_file OF memROM : SIGNAL IS "ROMcontent.mif";
 
   -- Utiliza uma quantidade menor de endereços locais:
-  SIGNAL EnderecoLocal : std_logic_vector(memoryAddrWidth - 1 DOWNTO 0);
+  SIGNAL EnderecoLocal : STD_LOGIC_VECTOR(memoryAddrWidth - 1 DOWNTO 0);
 
 BEGIN
   EnderecoLocal <= Endereco(memoryAddrWidth + 1 DOWNTO 2);

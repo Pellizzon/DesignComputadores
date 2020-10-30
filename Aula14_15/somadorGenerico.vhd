@@ -1,20 +1,18 @@
-library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;          -- Biblioteca IEEE para funções aritméticas
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL; -- Biblioteca IEEE para funções aritméticas
 
-entity somadorGenerico is
-    generic
-    (
-        larguraDados : natural := 32
+ENTITY somadorGenerico IS
+    GENERIC (
+        larguraDados : NATURAL := 32
     );
-    port
-    (
-        entradaA, entradaB: in STD_LOGIC_VECTOR((larguraDados-1) downto 0);
-        saida:  out STD_LOGIC_VECTOR((larguraDados-1) downto 0)
+    PORT (
+        entradaA, entradaB : IN STD_LOGIC_VECTOR((larguraDados - 1) DOWNTO 0);
+        saida              : OUT STD_LOGIC_VECTOR((larguraDados - 1) DOWNTO 0)
     );
-end entity;
+END ENTITY;
 
-architecture comportamento of somadorGenerico is
-    begin
-        saida <= STD_LOGIC_VECTOR(unsigned(entradaA) + unsigned(entradaB));
-end architecture;
+ARCHITECTURE comportamento OF somadorGenerico IS
+BEGIN
+    saida <= STD_LOGIC_VECTOR(unsigned(entradaA) + unsigned(entradaB));
+END ARCHITECTURE;

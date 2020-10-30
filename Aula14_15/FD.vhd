@@ -6,16 +6,15 @@ USE work.constantesMIPS.ALL;
 
 ENTITY FD IS
    PORT (
-		-- para teste
-		resetPC : IN STD_LOGIC;
-		
-		-----------------------
-      clk           : IN STD_LOGIC;
-      dataFromRAM   : IN STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
-      AddrRAM       : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
-      dataToRAM     : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
-      habLeituraMEM : OUT STD_LOGIC;
-      habEscritaMEM : OUT STD_LOGIC
+      -- para teste: simulacao
+		PCout : OUT STD_LOGIC_VECTOR(ADDR_WIDTH - 1 DOWNTO 0);
+      -----------------------
+      clk                    : IN STD_LOGIC;
+      barramentoDadosLeitura : IN STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
+      barramentoEnderecos    : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
+      barramentoDadosEscrita : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
+      habLeituraMEM          : OUT STD_LOGIC;
+      habEscritaMEM          : OUT STD_LOGIC
    );
 END ENTITY;
 
@@ -83,6 +82,10 @@ ARCHITECTURE rtl OF FD IS
    SIGNAL saidaMuxPC : STD_LOGIC_VECTOR(ADDR_WIDTH - 1 DOWNTO 0);
 BEGIN
 
+   -- para testes: simulacao
+	PCout <= saidaPC;
+   --
+
    AddrJmp <= ProxPc(31 DOWNTO 28) & ImedJmp & b"00";
 
    MuxJmp_PC_BEQ : ENTITY work.muxGenerico2x1
@@ -112,7 +115,7 @@ BEGIN
          DOUT   => saidaPC,
          ENABLE => '1',
          CLK    => clk,
-         RST    => resetPC
+         RST    => '0'
       );
 
    ROM : ENTITY work.ROMMIPS
@@ -130,7 +133,7 @@ BEGIN
          larguraDados => DATA_WIDTH
          ) PORT MAP(
          entradaA_MUX => saidaULA,
-         entradaB_MUX => dataFromRAM,
+         entradaB_MUX => barramentoDadosLeitura,
          seletor_MUX  => selULA_MEM,
          saida_MUX    => dataToWriteReg3
       );
@@ -161,8 +164,8 @@ BEGIN
       GENERIC MAP(
          larguraDados => ADDR_WIDTH
          ) PORT MAP(
-         entradaA_MUX => BranchPC,
-         entradaB_MUX => ProxPC,
+         entradaA_MUX => ProxPC,
+         entradaB_MUX => BranchPC,
          seletor_MUX  => selMUX_PC_BEQ,
          saida_MUX    => saidaMuxPC_BEQ
       );
@@ -171,8 +174,8 @@ BEGIN
       GENERIC MAP(
          larguraDados => REGBANK_ADDR_WIDTH
          ) PORT MAP(
-         entradaA_MUX => rd,
-         entradaB_MUX => rt,
+         entradaA_MUX => rt,
+         entradaB_MUX => rd,
          seletor_MUX  => selRt_Rd,
          saida_MUX    => EndRegC
       );
@@ -223,8 +226,8 @@ BEGIN
          palavraControle => palavraControle
       );
 
-   AddrRAM       <= saidaULA;
-   dataToRAM     <= bancoB_ULA;
-   habLeituraMEM <= memRd;
-   habEscritaMEM <= memWr;
+   barramentoEnderecos    <= saidaULA;
+   barramentoDadosEscrita <= bancoB_ULA;
+   habLeituraMEM          <= memRd;
+   habEscritaMEM          <= memWr;
 END ARCHITECTURE;

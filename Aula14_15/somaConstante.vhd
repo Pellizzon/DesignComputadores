@@ -15,5 +15,5 @@ END ENTITY;
 
 ARCHITECTURE comportamento OF somaConstante IS
 BEGIN
-    saida <= std_logic_vector(unsigned(entrada) + constante);
+    saida <= STD_LOGIC_VECTOR(unsigned(entrada) + constante);
 END ARCHITECTURE;

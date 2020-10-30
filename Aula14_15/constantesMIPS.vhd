@@ -68,13 +68,6 @@ PACKAGE constantesMIPS IS
 
     --  Mux1: mux([PC+4, BEQ]/J);  Mux2: mux(Rt/Rd); Mux3: mux(Rt/imediato);  Mux4: mux(ULA/mem).
 
-    CONSTANT ctrlTipoR   : ctrlWorld_t := "0110100000";
-    CONSTANT ctrlTipoJ   : ctrlWorld_t := "1X0XXXXX00";
-    CONSTANT ctrlTipoLW  : ctrlWorld_t := "0011001010";
-    CONSTANT ctrlTipoSW  : ctrlWorld_t := "0001000001";
-    CONSTANT ctrlTipoBEQ : ctrlWorld_t := "0000010100";
-    CONSTANT ctrlZERO    : ctrlWorld_t := "0000000000";
-
     --  -- ULA ---
     SUBTYPE operacaoULA_t IS STD_LOGIC_VECTOR(2 DOWNTO 0);
 

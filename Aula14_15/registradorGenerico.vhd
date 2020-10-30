@@ -6,10 +6,10 @@ ENTITY registradorGenerico IS
         larguraDados : NATURAL := 8
     );
     PORT (
-        DIN      : IN std_logic_vector(larguraDados - 1 DOWNTO 0);
-        DOUT     : OUT std_logic_vector(larguraDados - 1 DOWNTO 0);
-        ENABLE   : IN std_logic;
-        CLK, RST : IN std_logic
+        DIN      : IN STD_LOGIC_VECTOR(larguraDados - 1 DOWNTO 0);
+        DOUT     : OUT STD_LOGIC_VECTOR(larguraDados - 1 DOWNTO 0);
+        ENABLE   : IN STD_LOGIC;
+        CLK, RST : IN STD_LOGIC
     );
 END ENTITY;
 

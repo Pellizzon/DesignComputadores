@@ -1,33 +1,32 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
-entity edgeDetector is
-     Port ( clk     : in  STD_LOGIC;
-              entrada : in  STD_LOGIC;
-              saida   : out STD_LOGIC);
-end entity;
+ENTITY edgeDetector IS
+  PORT (
+    clk     : IN STD_LOGIC;
+    entrada : IN STD_LOGIC;
+    saida   : OUT STD_LOGIC);
+END ENTITY;
 
-architecture bordaSubida of edgeDetector is
-    signal saidaQ : STD_LOGIC;
-begin
-  process(clk)
-  begin
-        if rising_edge(clk) then
-            saidaQ <= entrada;
-        end if;
-  end process;
-  saida <= entrada and (not saidaQ);
-end  architecture bordaSubida;
-
-
-architecture bordaDescida of edgeDetector is
-    signal saidaQ : STD_LOGIC;
-begin
-  process(clk)
-  begin
-        if rising_edge(clk) then
-            saidaQ <= entrada;
-        end if;
-  end process;
-  saida <= (not entrada) and saidaQ;
-end  architecture bordaDescida;
+ARCHITECTURE bordaSubida OF edgeDetector IS
+  SIGNAL saidaQ : STD_LOGIC;
+BEGIN
+  PROCESS (clk)
+  BEGIN
+    IF rising_edge(clk) THEN
+      saidaQ <= entrada;
+    END IF;
+  END PROCESS;
+  saida <= entrada AND (NOT saidaQ);
+END ARCHITECTURE bordaSubida;
+ARCHITECTURE bordaDescida OF edgeDetector IS
+  SIGNAL saidaQ : STD_LOGIC;
+BEGIN
+  PROCESS (clk)
+  BEGIN
+    IF rising_edge(clk) THEN
+      saidaQ <= entrada;
+    END IF;
+  END PROCESS;
+  saida <= (NOT entrada) AND saidaQ;
+END ARCHITECTURE bordaDescida;

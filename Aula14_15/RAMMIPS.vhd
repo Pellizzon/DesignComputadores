@@ -22,9 +22,8 @@ ARCHITECTURE assincrona OF RAMMIPS IS
 
   SIGNAL memRAM : blocoMemoria;
   --  Caso queira inicializar a RAM (para testes):
-  --  attribute ram_init_file : string;
-  --  attribute ram_init_file of memRAM:
-  --  signal is "RAMcontent.mif";
+  ATTRIBUTE ram_init_file           : STRING;
+  ATTRIBUTE ram_init_file OF memRAM : SIGNAL IS "RAMcontent.mif";
 
   -- Utiliza uma quantidade menor de endereços locais:
   SIGNAL EnderecoLocal : STD_LOGIC_VECTOR(memoryAddrWidth - 1 DOWNTO 0);

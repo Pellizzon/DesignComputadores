@@ -5,7 +5,7 @@ USE ieee.numeric_std.ALL;
 -- Baseado no apendice C (Register Files) do COD (Patterson & Hennessy).
 ENTITY bancoRegistradores IS
 	GENERIC (
-		larguraDados : NATURAL := 32;
+		larguraDados        : NATURAL := 32;
 		larguraEndBancoRegs : NATURAL := 5
 	);
 	-- Leitura de 2 registradores e escrita em 1 registrador simultaneamente.
@@ -33,9 +33,9 @@ ARCHITECTURE rtl OF bancoRegistradores IS
 		RETURN reg_bank_t IS VARIABLE tmp : reg_bank_t := (OTHERS => (OTHERS => '0'));
 	BEGIN
 		-- Inicializa os endereços:
-		tmp(0) := x"00000000";
-		tmp(8) := x"00000000";
-		tmp(9) := x"0000000A";
+		tmp(0)  := x"00000000";
+		tmp(8)  := x"00000000";
+		tmp(9)  := x"0000000A";
 		tmp(10) := x"0000000B";
 		tmp(11) := x"0000000C";
 		tmp(12) := x"0000000D";
@@ -43,8 +43,8 @@ ARCHITECTURE rtl OF bancoRegistradores IS
 		RETURN tmp;
 	END initMemory;
 
-	SIGNAL bancoReg : reg_bank_t := initMemory;
-	CONSTANT zero : STD_LOGIC_VECTOR(larguraDados-1 DOWNTO 0) := (OTHERS => '0');
+	SIGNAL bancoReg : reg_bank_t                                  := initMemory;
+	CONSTANT zero   : STD_LOGIC_VECTOR(larguraDados - 1 DOWNTO 0) := (OTHERS => '0');
 BEGIN
 	PROCESS (clk)
 	BEGIN
@@ -54,6 +54,8 @@ BEGIN
 			END IF;
 		END IF;
 	END PROCESS;
-	saidaA <= zero when to_integer(unsigned(enderecoA)) = to_integer(unsigned(zero)) else bancoReg(to_integer(unsigned(enderecoA)));
-	saidaB <= zero when to_integer(unsigned(enderecoB)) = to_integer(unsigned(zero)) else bancoReg(to_integer(unsigned(enderecoB)));
+	saidaA <= zero WHEN to_integer(unsigned(enderecoA)) = to_integer(unsigned(zero)) ELSE
+		bancoReg(to_integer(unsigned(enderecoA)));
+	saidaB <= zero WHEN to_integer(unsigned(enderecoB)) = to_integer(unsigned(zero)) ELSE
+		bancoReg(to_integer(unsigned(enderecoB)));
 END rtl;

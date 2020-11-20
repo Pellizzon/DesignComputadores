@@ -9,7 +9,7 @@ ENTITY somador IS
     PORT (
         entradaA : IN STD_LOGIC_VECTOR((larguraDados - 1) DOWNTO 0);
         entradaB : IN STD_LOGIC_VECTOR((larguraDados - 1) DOWNTO 0);
-        saida : OUT STD_LOGIC_VECTOR((larguraDados - 1) DOWNTO 0)
+        saida    : OUT STD_LOGIC_VECTOR((larguraDados - 1) DOWNTO 0)
     );
 END ENTITY;
 

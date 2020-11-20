@@ -4,12 +4,12 @@ USE work.constantesMIPS.ALL;
 
 ENTITY etapa_execucao IS
     PORT (
-        ULActr : IN STD_LOGIC_VECTOR(CTRL_ALU_WIDTH - 1 DOWNTO 0);
-        sel_beq, sel_mux_banco_ula : IN STD_LOGIC;
-        PC_mais_4 : IN STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
+        ULActr                         : IN STD_LOGIC_VECTOR(CTRL_ALU_WIDTH - 1 DOWNTO 0);
+        sel_beq, sel_mux_banco_ula     : IN STD_LOGIC;
+        PC_mais_4                      : IN STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
         imediato, dadoLidoA, dadoLidoB : IN STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
-        PC_beq, saida_ula : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
-        sel_mux_beq : OUT STD_LOGIC
+        PC_beq, saida_ula              : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
+        sel_mux_beq                    : OUT STD_LOGIC
     );
 END ENTITY;
 
@@ -36,8 +36,8 @@ BEGIN
         PORT MAP(
             entradaA => dadoLidoA,
             entradaB => saida_mux_banco_ula,
-            ctr => ULActr,
-            saida => saida_ula,
+            ctr      => ULActr,
+            saida    => saida_ula,
             flagZero => Z_out
         );
 
@@ -48,8 +48,8 @@ BEGIN
         PORT MAP(
             entradaA => dadoLidoB,
             entradaB => imediato,
-            seletor => sel_mux_banco_ula,
-            saida => saida_mux_banco_ula
+            seletor  => sel_mux_banco_ula,
+            saida    => saida_mux_banco_ula
         );
 
     -- Lógica do BEQ
@@ -58,7 +58,7 @@ BEGIN
             larguraDado => DATA_WIDTH
         )
         PORT MAP(
-            shift_IN => imediato,
+            shift_IN  => imediato,
             shift_OUT => entrada_somador_beq
         );
 
@@ -69,7 +69,7 @@ BEGIN
         PORT MAP(
             entradaA => entrada_somador_beq,
             entradaB => PC_mais_4,
-            saida => PC_beq
+            saida    => PC_beq
         );
 
 END ARCHITECTURE;

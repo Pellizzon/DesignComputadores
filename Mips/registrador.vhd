@@ -12,10 +12,10 @@ ENTITY registrador IS
 	);
 
 	PORT (
-		clk : IN STD_LOGIC;
-		enable : IN STD_LOGIC;
-		reset : IN STD_LOGIC;
-		data_in : IN STD_LOGIC_VECTOR(NUM_BITS - 1 DOWNTO 0);
+		clk      : IN STD_LOGIC;
+		enable   : IN STD_LOGIC;
+		reset    : IN STD_LOGIC;
+		data_in  : IN STD_LOGIC_VECTOR(NUM_BITS - 1 DOWNTO 0);
 		data_out : OUT STD_LOGIC_VECTOR(NUM_BITS - 1 DOWNTO 0)
 	);
 

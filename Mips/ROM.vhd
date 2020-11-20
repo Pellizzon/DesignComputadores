@@ -4,13 +4,13 @@ USE ieee.numeric_std.ALL;
 
 ENTITY ROM IS
   GENERIC (
-    dataWidth : NATURAL := 32;
-    addrWidth : NATURAL := 32;
+    dataWidth       : NATURAL := 32;
+    addrWidth       : NATURAL := 32;
     memoryAddrWidth : NATURAL := 6
   ); -- 64 posicoes de 32 bits cada
   PORT (
     endereco : IN STD_LOGIC_VECTOR (addrWidth - 1 DOWNTO 0);
-    dado : OUT STD_LOGIC_VECTOR (dataWidth - 1 DOWNTO 0)
+    dado     : OUT STD_LOGIC_VECTOR (dataWidth - 1 DOWNTO 0)
   );
 END ENTITY;
 
@@ -56,10 +56,8 @@ ARCHITECTURE assincrona OF ROM IS
 
 BEGIN
   enderecoLocal <= endereco(memoryAddrWidth + 1 DOWNTO 2);
-  dado <= memROM (to_integer(unsigned(enderecoLocal)));
+  dado          <= memROM (to_integer(unsigned(enderecoLocal)));
 END ARCHITECTURE;
-
-
 ARCHITECTURE assincrona_pipeline OF ROM IS
   TYPE blocoMemoria IS ARRAY(0 TO 2 ** memoryAddrWidth - 1) OF STD_LOGIC_VECTOR(dataWidth - 1 DOWNTO 0);
 
@@ -95,10 +93,10 @@ ARCHITECTURE assincrona_pipeline OF ROM IS
     tmp(17) := x"012A_402A"; --slt $t0 $t1 $t2     ($t0 := 0x00000001)   000000 01001 01010 01000 00000 101010
     -- NOP x3
     tmp(21) := x"010A_4020"; --add $t0 $t0 $t2     ($t0 := 0x0000000C)   000000 01000 01010 01000 00000 100000
-      -- segunda execução ($t0 := 0x00000017)
+    -- segunda execução ($t0 := 0x00000017)
     -- NOP x3
     tmp(25) := x"110B_FFFB"; --beq $t0 $t3 0xFFFB  (pc := #21)            000100 01011 01011 xFFFB
-      -- segunda execução (pc := #28)
+    -- segunda execução (pc := #28)
     -- NOP x2
     tmp(28) := x"0800_0000"; --j 0x000000          (pc := #0)            000010 00 x000001
 
@@ -115,5 +113,5 @@ ARCHITECTURE assincrona_pipeline OF ROM IS
 
 BEGIN
   enderecoLocal <= endereco(memoryAddrWidth + 1 DOWNTO 2);
-  dado <= memROM (to_integer(unsigned(enderecoLocal)));
+  dado          <= memROM (to_integer(unsigned(enderecoLocal)));
 END ARCHITECTURE;

@@ -1,29 +1,25 @@
-library ieee;
-use ieee.std_logic_1164.all;
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
 
-entity clock_generator is
-	generic
-	(
-	CLK_PERIOD		: TIME	:= 10ns
+ENTITY clock_generator IS
+	GENERIC (
+		CLK_PERIOD : TIME := 10ns
 	);
 
-	port
-	(
-	clk		: out STD_LOGIC
+	PORT (
+		clk : OUT STD_LOGIC
 	);
 
-end clock_generator ;
+END clock_generator;
+ARCHITECTURE test OF clock_generator IS
 
+BEGIN
 
-architecture test of clock_generator is
-
-begin
-
-clk_generation : process
-	begin
+	clk_generation : PROCESS
+	BEGIN
 		CLK <= '1';
-		wait for CLK_PERIOD / 2;
+		WAIT FOR CLK_PERIOD / 2;
 		CLK <= '0';
-		wait for CLK_PERIOD / 2;
-	end process clk_generation;
-end architecture test;
+		WAIT FOR CLK_PERIOD / 2;
+	END PROCESS clk_generation;
+END ARCHITECTURE test;

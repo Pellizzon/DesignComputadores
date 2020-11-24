@@ -4,13 +4,13 @@ USE ieee.numeric_std.ALL;
 
 ENTITY ROM IS
   GENERIC (
-    dataWidth : NATURAL := 32;
-    addrWidth : NATURAL := 32;
+    dataWidth       : NATURAL := 32;
+    addrWidth       : NATURAL := 32;
     memoryAddrWidth : NATURAL := 6
   ); -- 64 posicoes de 32 bits cada
   PORT (
     endereco : IN STD_LOGIC_VECTOR (addrWidth - 1 DOWNTO 0);
-    dado : OUT STD_LOGIC_VECTOR (dataWidth - 1 DOWNTO 0)
+    dado     : OUT STD_LOGIC_VECTOR (dataWidth - 1 DOWNTO 0)
   );
 END ENTITY;
 
@@ -56,10 +56,8 @@ ARCHITECTURE assincrona OF ROM IS
 
 BEGIN
   enderecoLocal <= endereco(memoryAddrWidth + 1 DOWNTO 2);
-  dado <= memROM (to_integer(unsigned(enderecoLocal)));
+  dado          <= memROM (to_integer(unsigned(enderecoLocal)));
 END ARCHITECTURE;
-
-
 ARCHITECTURE assincrona_pipeline OF ROM IS
   TYPE blocoMemoria IS ARRAY(0 TO 2 ** memoryAddrWidth - 1) OF STD_LOGIC_VECTOR(dataWidth - 1 DOWNTO 0);
 
@@ -76,7 +74,7 @@ ARCHITECTURE assincrona_pipeline OF ROM IS
     -- $t4 (#12) := 0x0D
     -- $t5 (#13) := 0x16
 
-    -- Carga para instruções do grupo A pipeline:
+    --    -- Carga para instruções do grupo A pipeline:
     tmp(0) := x"AC09_0008"; --sw $t1 8($zero)     (m(8) := 0x0000000A)  101011 00000 01001 x0008
     tmp(1) := x"8C08_0008"; --lw $t0 8($zero)     ($t0 := 0x0000000A)   100011 00000 01000 x0008
     tmp(2) := x"012A_4022"; --sub $t0 $t1 $t2     ($t0 := 0xFFFFFFFF)   000000 01001 01010 01000 00000 100010
@@ -95,12 +93,35 @@ ARCHITECTURE assincrona_pipeline OF ROM IS
     tmp(17) := x"012A_402A"; --slt $t0 $t1 $t2     ($t0 := 0x00000001)   000000 01001 01010 01000 00000 101010
     -- NOP x3
     tmp(21) := x"010A_4020"; --add $t0 $t0 $t2     ($t0 := 0x0000000C)   000000 01000 01010 01000 00000 100000
-      -- segunda execução ($t0 := 0x00000017)
+    -- segunda execução ($t0 := 0x00000017)
     -- NOP x3
     tmp(25) := x"110B_FFFB"; --beq $t0 $t3 0xFFFB  (pc := #21)            000100 01011 01011 xFFFB
-      -- segunda execução (pc := #28)
+    -- segunda execução (pc := #28)
     -- NOP x2
     tmp(28) := x"0800_0000"; --j 0x000000          (pc := #0)            000010 00 x000001
+    -- tmp(0) := x"AC09_0008"; --sw $t1 8($zero) (m(8) := 0x0A)      -- 0    8
+    -- tmp(1) := x"8C08_0008"; --lw $t0 8($zero) ($t0 := 0x0A)       -- 4    c
+    -- tmp(2) := x"0000_0000";                                       -- 8    10
+    -- tmp(3) := x"012A_4022"; --sub $t0 $t1 $t2 ($t0 := 0xFF)       -- C    14
+    -- tmp(4) := x"012A_4024"; --and $t0 $t1 $t2 ($t0 := 0x0A)       -- 10   18
+    -- tmp(5) := x"012A_4025"; --or $t0 $t1 $t2  ($t0 := 0x0B)       -- 14   1c
+    -- tmp(6) := x"012A_402A"; --slt $t0 $t1 $t2 ($t0 := 0x01)       -- 18   20
+    -- tmp(7) := x"0000_0000";                                       -- 1c   24
+    -- tmp(8) := x"0000_0000";                                       -- 20   28
+    -- tmp(9) := x"0000_0000";                                       -- 24   2c
+    -- tmp(10) := x"010A_4020"; --add $t0 $t0 $t2 ($t0 := 0x0C)      -- 28   30   Segunda vez: 0x17
+    -- tmp(11) := x"0000_0000";                                      -- 2c   34
+    -- tmp(12) := x"0000_0000";                                      -- 30   38
+    -- tmp(13) := x"0000_0000";                                      -- 34   3c
+    -- tmp(14) := x"110B_FFFA"; --beq $t0 $t3 0xFA(pc := 0x24)       -- 38   40   "FA=-6"  Segunda vez: pc := 3c
+    -- tmp(15) := x"0000_0000";                                      -- 3c   44
+    -- tmp(16) := x"0000_0000";                                      -- 40   48
+    -- tmp(17) := x"0000_0000";                                      -- 44   4c
+    -- tmp(18) := x"0800_0001"; --j 0x01 (pc := #1)                  -- 48   50
+    -- tmp(19) := x"0000_0000";                                      -- 4c   54
+    -- tmp(15) := x"0C00_001F"; --jal 0x00001F                       -- pc := #31
+    -- tmp(17) := x"0800_0000"; --j 0x000000                         -- pc := #0
+    -- tmp(31) := x"03E0_0008"; --jr $ra                             -- pc := #17
 
     RETURN tmp;
   END initMemory;
@@ -115,5 +136,5 @@ ARCHITECTURE assincrona_pipeline OF ROM IS
 
 BEGIN
   enderecoLocal <= endereco(memoryAddrWidth + 1 DOWNTO 2);
-  dado <= memROM (to_integer(unsigned(enderecoLocal)));
+  dado          <= memROM (to_integer(unsigned(enderecoLocal)));
 END ARCHITECTURE;

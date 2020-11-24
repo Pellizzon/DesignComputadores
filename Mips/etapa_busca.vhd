@@ -7,8 +7,8 @@ ENTITY etapa_busca IS
         larguraROM : NATURAL := 8 -- deve ser menor ou igual a 32
     );
     PORT (
-        clk : IN STD_LOGIC;
-        PC_prox : IN STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
+        clk                  : IN STD_LOGIC;
+        PC_prox              : IN STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
         instrucao, PC_mais_4 : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0)
     );
 END ENTITY;
@@ -26,10 +26,10 @@ BEGIN
         )
         PORT MAP(
             data_out => PC_s,
-            data_in => PC_prox,
-            clk => clk,
-            enable => '1',
-            reset => '1' -- reset negado
+            data_in  => PC_prox,
+            clk      => clk,
+            enable   => '1',
+            reset    => '1' -- reset negado
         );
 
     Somador : ENTITY work.soma4
@@ -38,17 +38,17 @@ BEGIN
         )
         PORT MAP(
             entrada => PC_s,
-            saida => PC_mais_4
+            saida   => PC_mais_4
         );
 
-    ROM : ENTITY work.ROM(assincrona)
+    ROM : ENTITY work.ROM(assincrona_pipeline)
         GENERIC MAP(
             dataWidth => DATA_WIDTH,
             addrWidth => larguraROM
         )
         PORT MAP(
             endereco => PC_s(larguraROM - 1 DOWNTO 0),
-            dado => instrucao
+            dado     => instrucao
         );
 
 END ARCHITECTURE;

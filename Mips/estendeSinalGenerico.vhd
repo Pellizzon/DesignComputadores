@@ -4,7 +4,7 @@ USE ieee.std_logic_1164.ALL;
 ENTITY estendeSinalGenerico IS
     GENERIC (
         larguraDadoEntrada : NATURAL := 8;
-        larguraDadoSaida : NATURAL := 8
+        larguraDadoSaida   : NATURAL := 8
     );
     PORT (
         -- Input ports

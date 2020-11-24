@@ -8,8 +8,8 @@ ENTITY muxGenerico2 IS
     PORT (
         entradaA : IN STD_LOGIC_VECTOR(larguraDados - 1 DOWNTO 0);
         entradaB : IN STD_LOGIC_VECTOR(larguraDados - 1 DOWNTO 0);
-        seletor : IN STD_LOGIC;
-        saida : OUT STD_LOGIC_VECTOR(larguraDados - 1 DOWNTO 0)
+        seletor  : IN STD_LOGIC;
+        saida    : OUT STD_LOGIC_VECTOR(larguraDados - 1 DOWNTO 0)
     );
 END ENTITY;
 

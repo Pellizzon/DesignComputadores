@@ -4,14 +4,14 @@ USE ieee.numeric_std.ALL;
 
 PACKAGE constantesMIPS IS
 
-    CONSTANT FUNCT_WIDTH : NATURAL := 6;
-    CONSTANT OPCODE_WIDTH : NATURAL := 6;
-    CONSTANT CONTROLWORD_WIDTH : NATURAL := 11;
-    CONSTANT DATA_WIDTH : NATURAL := 32;
-    CONSTANT ADDR_WIDTH : NATURAL := 32;
+    CONSTANT FUNCT_WIDTH        : NATURAL := 6;
+    CONSTANT OPCODE_WIDTH       : NATURAL := 6;
+    CONSTANT CONTROLWORD_WIDTH  : NATURAL := 11;
+    CONSTANT DATA_WIDTH         : NATURAL := 32;
+    CONSTANT ADDR_WIDTH         : NATURAL := 32;
     CONSTANT REGBANK_ADDR_WIDTH : NATURAL := 5;
-    CONSTANT ALU_OP_WIDTH : NATURAL := 3;
-    CONSTANT CTRL_ALU_WIDTH : NATURAL := 4;
+    CONSTANT ALU_OP_WIDTH       : NATURAL := 3;
+    CONSTANT CTRL_ALU_WIDTH     : NATURAL := 4;
 
     -- codigos das instrucoes do DLX:
     SUBTYPE opCode_t IS STD_LOGIC_VECTOR(OPCODE_WIDTH - 1 DOWNTO 0);
@@ -26,25 +26,25 @@ PACKAGE constantesMIPS IS
     CONSTANT functADD : funct_t := "100000";
     CONSTANT functSUB : funct_t := "100010";
     CONSTANT functAND : funct_t := "100100";
-    CONSTANT functOR : funct_t := "100101";
+    CONSTANT functOR  : funct_t := "100101";
     CONSTANT functSLT : funct_t := "101010";
 
     CONSTANT opCodeTipoR : opCode_t := "000000";
     --
-    CONSTANT opCodeLW : opCode_t := "100011";
-    CONSTANT opCodeSW : opCode_t := "101011";
+    CONSTANT opCodeLW  : opCode_t := "100011";
+    CONSTANT opCodeSW  : opCode_t := "101011";
     CONSTANT opCodeBEQ : opCode_t := "000100";
     --
     CONSTANT opCodeTipoJ : opCode_t := "000010";
 
     -- ALU ---
     CONSTANT readFunctULA : aluOp_t := "000";
-    CONSTANT aluOpAdd : aluOp_t := "001";
-    CONSTANT aluOpSub : aluOp_t := "010";
-    CONSTANT aluOpAnd : aluOp_t := "011";
-    CONSTANT aluOpOr : aluOp_t := "100";
-    CONSTANT aluOpSlt : aluOp_t := "101";
-    CONSTANT aluOpDC : aluOp_t := "XXX";
+    CONSTANT aluOpAdd     : aluOp_t := "001";
+    CONSTANT aluOpSub     : aluOp_t := "010";
+    CONSTANT aluOpAnd     : aluOp_t := "011";
+    CONSTANT aluOpOr      : aluOp_t := "100";
+    CONSTANT aluOpSlt     : aluOp_t := "101";
+    CONSTANT aluOpDC      : aluOp_t := "XXX";
 
     -- ALUctr:
     -- 3: inverteA
@@ -54,7 +54,7 @@ PACKAGE constantesMIPS IS
     CONSTANT ulaCtrlAdd : ctrlALU_t := "0010";
     CONSTANT ulaCtrlSub : ctrlALU_t := "0110";
     CONSTANT ulaCtrlAnd : ctrlALU_t := "0000";
-    CONSTANT ulaCtrlOr : ctrlALU_t := "0001";
+    CONSTANT ulaCtrlOr  : ctrlALU_t := "0001";
     CONSTANT ulaCtrlSlt : ctrlALU_t := "0111";
 
     -- Pontos de controle:
@@ -77,10 +77,10 @@ PACKAGE constantesMIPS IS
 
     --  Mux1: mux([PC+4, BEQ]/J);  Mux2: mux(Rt/Rd); Mux3: mux(Rt/imediato);  Mux4: mux(ULA/mem).
 
-    CONSTANT ctrlTipoR : ctrlWorld_t := "10" & readFunctULA & "000X01";
-    CONSTANT ctrlTipoJ : ctrlWorld_t := "X1" & aluOpDC & "0XXX00";
+    CONSTANT ctrlTipoR   : ctrlWorld_t := "10" & readFunctULA & "000X01";
+    CONSTANT ctrlTipoJ   : ctrlWorld_t := "X1" & aluOpDC & "0XXX00";
     CONSTANT ctrlTipoBEQ : ctrlWorld_t := "X0" & aluOpSub & "10XX00";
-    CONSTANT ctrlTipoLW : ctrlWorld_t := "00" & aluOpAdd & "011101";
-    CONSTANT ctrlTipoSW : ctrlWorld_t := "X0" & aluOpAdd & "01XX10";
+    CONSTANT ctrlTipoLW  : ctrlWorld_t := "00" & aluOpAdd & "011101";
+    CONSTANT ctrlTipoSW  : ctrlWorld_t := "X0" & aluOpAdd & "01XX10";
 
 END PACKAGE constantesMIPS;

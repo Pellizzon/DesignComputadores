@@ -9,8 +9,8 @@ ENTITY muxGenerico3 IS
         entradaA : IN STD_LOGIC_VECTOR(larguraDados - 1 DOWNTO 0);
         entradaB : IN STD_LOGIC_VECTOR(larguraDados - 1 DOWNTO 0);
         entradaC : IN STD_LOGIC_VECTOR(larguraDados - 1 DOWNTO 0);
-        seletor : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
-        saida : OUT STD_LOGIC_VECTOR(larguraDados - 1 DOWNTO 0)
+        seletor  : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+        saida    : OUT STD_LOGIC_VECTOR(larguraDados - 1 DOWNTO 0)
     );
 END ENTITY;
 

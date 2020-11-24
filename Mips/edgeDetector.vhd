@@ -3,9 +3,9 @@ USE IEEE.STD_LOGIC_1164.ALL;
 
 ENTITY edgeDetector IS
     PORT (
-        clk : IN STD_LOGIC;
+        clk     : IN STD_LOGIC;
         entrada : IN STD_LOGIC;
-        saida : OUT STD_LOGIC);
+        saida   : OUT STD_LOGIC);
 END ENTITY;
 
 ARCHITECTURE bordaSubida OF edgeDetector IS

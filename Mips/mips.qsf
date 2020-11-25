@@ -141,9 +141,6 @@ set_location_assignment PIN_W19 -to HEX5[6]
 # KEY
 #============================================================
 set_location_assignment PIN_U7 -to KEY[0]
-set_location_assignment PIN_W9 -to KEY[1]
-set_location_assignment PIN_M7 -to KEY[2]
-set_location_assignment PIN_M6 -to KEY[3]
 
 #============================================================
 # KEY (Reset)
@@ -154,14 +151,6 @@ set_location_assignment PIN_M6 -to KEY[3]
 #============================================================
 set_location_assignment PIN_AA2 -to LEDR[0]
 set_location_assignment PIN_AA1 -to LEDR[1]
-set_location_assignment PIN_W2 -to LEDR[2]
-set_location_assignment PIN_Y3 -to LEDR[3]
-set_location_assignment PIN_N2 -to LEDR[4]
-set_location_assignment PIN_N1 -to LEDR[5]
-set_location_assignment PIN_U2 -to LEDR[6]
-set_location_assignment PIN_U1 -to LEDR[7]
-set_location_assignment PIN_L2 -to LEDR[8]
-set_location_assignment PIN_L1 -to LEDR[9]
 
 
 #============================================================

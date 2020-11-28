@@ -38,6 +38,7 @@ BEGIN
         aluOpSub WHEN opcode = opCodeBEQ ELSE
         aluOpAdd WHEN opcode = opCodeLW OR opcode = opCodeSW ELSE
         aluOpLui WHEN opCode = opCodeLUI ELSE
+        aluOpAdd WHEN opCode = opCodeADDI ELSE
         "000";
 
     sel_beq <= '1' WHEN opCode = opCodeBEQ ELSE
@@ -46,6 +47,7 @@ BEGIN
     sel_mux_banco_ula <= '1' WHEN opCode = opCodeSW ELSE
         '1' WHEN opCode = opCodeLW ELSE
         '1' WHEN opCode = opCodeLUI ELSE
+        '1' WHEN opCode = opCodeADDI ELSE
         '0';
 
     sel_mux_ula_mem <= '1' WHEN opCode = opCodeLW ELSE
@@ -60,6 +62,7 @@ BEGIN
     escreve_RC <= '1' WHEN opCode = opCodeTipoR ELSE
         '1' WHEN opCode = opCodeLW ELSE
         '1' WHEN opCode = opCodeLUI ELSE
+        '1' WHEN opCode = opCodeADDI ELSE
         '0';
 
 END bhv;

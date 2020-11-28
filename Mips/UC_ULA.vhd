@@ -27,5 +27,6 @@ BEGIN
         ulaCtrlOr WHEN (ALUop_s = aluOpOr) ELSE
         ulaCtrlSlt WHEN (ALUop_s = aluOpSlt) ELSE
         ulaCtrlLui WHEN (ALUop_s = aluOpLui) ELSE
+        ulaCtrlAdd WHEN (ALUop_s = aluOpAdd) ELSE
         (OTHERS => '0');
 END bhv;

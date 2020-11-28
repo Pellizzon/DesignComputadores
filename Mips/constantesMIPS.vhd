@@ -31,10 +31,11 @@ PACKAGE constantesMIPS IS
 
     CONSTANT opCodeTipoR : opCode_t := "000000";
     --
-    CONSTANT opCodeLW  : opCode_t := "100011";
-    CONSTANT opCodeSW  : opCode_t := "101011";
-    CONSTANT opCodeBEQ : opCode_t := "000100";
-    CONSTANT opCodeLUI : opCode_t := "001111";
+    CONSTANT opCodeLW   : opCode_t := "100011";
+    CONSTANT opCodeSW   : opCode_t := "101011";
+    CONSTANT opCodeBEQ  : opCode_t := "000100";
+    CONSTANT opCodeLUI  : opCode_t := "001111";
+    CONSTANT opCodeADDI : opCode_t := "001000";
     --
     CONSTANT opCodeTipoJ : opCode_t := "000010";
 
@@ -46,8 +47,8 @@ PACKAGE constantesMIPS IS
     CONSTANT aluOpOr      : aluOp_t := "100";
     CONSTANT aluOpSlt     : aluOp_t := "101";
     CONSTANT aluOpLui     : aluOp_t := "110";
+    CONSTANT aluOpAddi    : aluOp_t := "111";
     CONSTANT aluOpDC      : aluOp_t := "XXX";
-
     -- ALUctr:
     -- 3: inverteA
     -- 2: inverteB

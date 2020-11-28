@@ -6,7 +6,7 @@ PACKAGE constantesMIPS IS
 
     CONSTANT FUNCT_WIDTH        : NATURAL := 6;
     CONSTANT OPCODE_WIDTH       : NATURAL := 6;
-    CONSTANT CONTROLWORD_WIDTH  : NATURAL := 11 + 1;
+    CONSTANT CONTROLWORD_WIDTH  : NATURAL := 11 + 3;
     CONSTANT DATA_WIDTH         : NATURAL := 32;
     CONSTANT ADDR_WIDTH         : NATURAL := 32;
     CONSTANT REGBANK_ADDR_WIDTH : NATURAL := 5;
@@ -36,6 +36,10 @@ PACKAGE constantesMIPS IS
     CONSTANT opCodeBEQ  : opCode_t := "000100";
     CONSTANT opCodeLUI  : opCode_t := "001111";
     CONSTANT opCodeADDI : opCode_t := "001000";
+    CONSTANT opCodeANDI : opCode_t := "001100";
+    CONSTANT opCodeORI  : opCode_t := "001101";
+    CONSTANT opCodeSLTI : opCode_t := "001010";
+    CONSTANT opCodeBNE  : opCode_t := "000101";
     --
     CONSTANT opCodeTipoJ : opCode_t := "000010";
 
@@ -47,7 +51,6 @@ PACKAGE constantesMIPS IS
     CONSTANT aluOpOr      : aluOp_t := "100";
     CONSTANT aluOpSlt     : aluOp_t := "101";
     CONSTANT aluOpLui     : aluOp_t := "110";
-    CONSTANT aluOpAddi    : aluOp_t := "111";
     CONSTANT aluOpDC      : aluOp_t := "XXX";
     -- ALUctr:
     -- 3: inverteA

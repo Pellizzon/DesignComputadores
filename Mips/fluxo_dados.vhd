@@ -38,6 +38,8 @@ ARCHITECTURE estrutural OF fluxo_dados IS
     -- ID --
 
     -- Codigos da palavra de controle:
+    ALIAS bne          : STD_LOGIC IS pontosDeControle(13);
+    ALIAS selORI_ANDI  : STD_LOGIC IS pontosDeControle(12);
     ALIAS lui          : STD_LOGIC IS pontosDeControle(11);
     ALIAS sel_mux_jump : STD_LOGIC IS pontosDeControle(9);
 
@@ -51,14 +53,16 @@ ARCHITECTURE estrutural OF fluxo_dados IS
     SIGNAL enderecoC_ID                            : STD_LOGIC_VECTOR(REGBANK_ADDR_WIDTH - 1 DOWNTO 0);
 
     -- Sinais do registrador intermediário 
-    SIGNAL IDEX_saida : STD_LOGIC_VECTOR(4 * DATA_WIDTH + 2 * REGBANK_ADDR_WIDTH + CONTROLWORD_WIDTH - 2 DOWNTO 0);
+    SIGNAL IDEX_saida : STD_LOGIC_VECTOR(4 * DATA_WIDTH + 2 * REGBANK_ADDR_WIDTH + 12 - 1 DOWNTO 0);
+    --       149: sel_bne 
     -- 148 ~ 117: IFID_saida(63 DOWNTO 32) = PC+4 
     -- 116 ~  85: dadoLidoA_ID 
     --  84 ~  53: dadoLidoB_ID
     --  52 ~  21: imediato_ID
     --  20 ~  16: RT_addr_ID &
     --  15 ~  11: RD_addr_ID &
-    --  10 ~   0: pontosDeControle,
+    --  10 ~   0: pontosDeControle(10 DOWNTO 0),
+    ALIAS sel_bne           : STD_LOGIC IS IDEX_saida(149);
     ALIAS ID_EX_PCmais4     : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0) IS IDEX_saida(148 DOWNTO 117);
     ALIAS ID_EX_DadoLidoA   : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0) IS IDEX_saida(116 DOWNTO 85);
     ALIAS ID_EX_DadoLidoB   : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0) IS IDEX_saida(84 DOWNTO 53);
@@ -202,9 +206,10 @@ BEGIN
     ID : ENTITY work.etapa_decodificacao
         PORT MAP
         (
-            clk       => clk,
-            instrucao => IFID_saida(31 DOWNTO 0),
-            lui       => lui,
+            clk         => clk,
+            instrucao   => IFID_saida(31 DOWNTO 0),
+            lui         => lui,
+            selORI_ANDI => selORI_ANDI,
             -- saidas
             saidaA       => dadoLidoA_ID,
             saidaB       => dadoLidoB_ID,
@@ -217,12 +222,13 @@ BEGIN
 
     ID_EX : ENTITY work.registrador
         GENERIC MAP(
-            NUM_BITS => 4 * DATA_WIDTH + 2 * REGBANK_ADDR_WIDTH + CONTROLWORD_WIDTH - 1
+            NUM_BITS => 4 * DATA_WIDTH + 2 * REGBANK_ADDR_WIDTH + 12
             ) PORT MAP(
             clk     => clk,
             enable  => '1',
             reset   => '1',
-            data_in => IFID_saida(63 DOWNTO 32) &
+            data_in => bne &
+            IFID_saida(63 DOWNTO 32) &
             dadoLidoA_ID &
             dadoLidoB_ID &
             imediato_ID &
@@ -261,6 +267,7 @@ BEGIN
             -- controle
             ULActr            => ULActr,
             sel_beq           => sel_beq,
+            sel_bne           => sel_bne,
             sel_mux_banco_ula => sel_mux_banco_ula,
             -- saidas
             PC_beq      => PC_beq_EX,

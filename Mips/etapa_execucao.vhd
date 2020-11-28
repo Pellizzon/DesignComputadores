@@ -4,12 +4,12 @@ USE work.constantesMIPS.ALL;
 
 ENTITY etapa_execucao IS
     PORT (
-        ULActr                         : IN STD_LOGIC_VECTOR(CTRL_ALU_WIDTH - 1 DOWNTO 0);
-        sel_beq, sel_mux_banco_ula     : IN STD_LOGIC;
-        PC_mais_4                      : IN STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
-        imediato, dadoLidoA, dadoLidoB : IN STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
-        PC_beq, saida_ula              : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
-        sel_mux_beq                    : OUT STD_LOGIC
+        ULActr                              : IN STD_LOGIC_VECTOR(CTRL_ALU_WIDTH - 1 DOWNTO 0);
+        sel_beq, sel_mux_banco_ula, sel_bne : IN STD_LOGIC;
+        PC_mais_4                           : IN STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
+        imediato, dadoLidoA, dadoLidoB      : IN STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
+        PC_beq, saida_ula                   : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
+        sel_mux_beq                         : OUT STD_LOGIC
     );
 END ENTITY;
 
@@ -26,7 +26,7 @@ ARCHITECTURE estrutural OF etapa_execucao IS
 
 BEGIN
 
-    sel_mux_beq <= sel_beq AND Z_out;
+    sel_mux_beq <= (sel_beq AND Z_out) AND (sel_bne AND NOT(Z_out));
 
     -- Lógica da ULA
     ULA : ENTITY work.ULA

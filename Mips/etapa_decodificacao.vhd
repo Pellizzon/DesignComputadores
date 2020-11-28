@@ -6,6 +6,7 @@ ENTITY etapa_decodificacao IS
     PORT (
         clk                          : IN STD_LOGIC;
         lui                          : IN STD_LOGIC;
+        selORI_ANDI                  : IN STD_LOGIC;
         instrucao                    : IN STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
         enderecoC                    : IN STD_LOGIC_VECTOR(REGBANK_ADDR_WIDTH - 1 DOWNTO 0);
         dadoEscritaC                 : IN STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
@@ -47,6 +48,7 @@ BEGIN
             larguraDadoSaida   => DATA_WIDTH
         )
         PORT MAP(
+            selORI_ANDI      => selORI_ANDI,
             estendeSinal_IN  => imediato,
             estendeSinal_OUT => imediato_ext
         );

@@ -1,4 +1,4 @@
-LIBRARY IEEE;
+	LIBRARY IEEE;
 USE IEEE.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 
@@ -116,7 +116,7 @@ ARCHITECTURE assincrona_pipeline OF ROM IS
     tmp(10) := x"012A402A"; --slt $t0 $t1 $t2     ($t0 := 0x00000001)
     tmp(11) := x"010A4020"; --add $t0 $t0 $t2     HAZARD  ($t0 := 0x0000000B)
     tmp(12) := x"110BFFFE"; --beq $t0 $t3 0xFFFE  HAZARD  (pc := #15)
-    tmp(13) := x"08000000"; --j 0x000010          (pc := #16)
+    tmp(13) := x"08000010"; --j 0x000010          (pc := #16)
 
     tmp(16) := x"AC090008"; --sw $t1 8($zero)     (m(8) := 0x0000000A)
     tmp(17) := x"8C080008"; --lw $t0 8($zero)     ($t0 := 0x0000000A)

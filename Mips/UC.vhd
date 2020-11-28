@@ -11,6 +11,7 @@ END ENTITY;
 
 ARCHITECTURE bhv OF UC IS
 
+    ALIAS lui               : STD_LOGIC IS pontosDeControle(11);
     ALIAS sel_mux_rd_rt     : STD_LOGIC IS pontosDeControle(10);
     ALIAS sel_mux_jump      : STD_LOGIC IS pontosDeControle(9);
     ALIAS ULAop             : STD_LOGIC_VECTOR(ALU_OP_WIDTH - 1 DOWNTO 0) IS pontosDeControle(8 DOWNTO 6);
@@ -23,6 +24,9 @@ ARCHITECTURE bhv OF UC IS
 
 BEGIN
 
+    lui <= '1' WHEN opCode = opCodeLUI ELSE
+        '0';
+
     sel_mux_rd_rt <= '1' WHEN opCode = opCodeTipoR ELSE
         '0';
 
@@ -33,6 +37,7 @@ BEGIN
         aluOpDC WHEN opcode = opCodeTipoJ ELSE
         aluOpSub WHEN opcode = opCodeBEQ ELSE
         aluOpAdd WHEN opcode = opCodeLW OR opcode = opCodeSW ELSE
+        aluOpLui WHEN opCode = opCodeLUI ELSE
         "000";
 
     sel_beq <= '1' WHEN opCode = opCodeBEQ ELSE
@@ -40,6 +45,7 @@ BEGIN
 
     sel_mux_banco_ula <= '1' WHEN opCode = opCodeSW ELSE
         '1' WHEN opCode = opCodeLW ELSE
+        '1' WHEN opCode = opCodeLUI ELSE
         '0';
 
     sel_mux_ula_mem <= '1' WHEN opCode = opCodeLW ELSE
@@ -53,6 +59,7 @@ BEGIN
 
     escreve_RC <= '1' WHEN opCode = opCodeTipoR ELSE
         '1' WHEN opCode = opCodeLW ELSE
+        '1' WHEN opCode = opCodeLUI ELSE
         '0';
 
 END bhv;

@@ -36,6 +36,7 @@ BEGIN
 		op_and WHEN (ctr = ulaCtrlAnd) ELSE
 		op_or WHEN (ctr = ulaCtrlOr) ELSE
 		slt WHEN (ctr = ulaCtrlSlt) ELSE
+		entradaB WHEN (ctr = ulaCtrlLui) ELSE
 		entradaA; -- outra opcao: saida = entradaA
 
 	flagZero <= '1' WHEN unsigned(subtracao) = unsigned(zero) ELSE

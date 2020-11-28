@@ -13,7 +13,8 @@ ENTITY fluxo_dados IS
         -- sinais para depuração
         PC_prox_out, dadoEscritaC_out, enderecoEscritaRAM_out, dadoEscritoRAM_out, pc_ex : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
         enderecoC_out                                                                    : OUT STD_LOGIC_VECTOR(REGBANK_ADDR_WIDTH - 1 DOWNTO 0);
-        escreveC_out, escreveRAM_out                                                     : OUT STD_LOGIC
+        escreveC_out, escreveRAM_out                                                     : OUT STD_LOGIC;
+        ULA_B_out, ULA_A_out                                                             : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0)
     );
 END ENTITY;
 
@@ -37,6 +38,7 @@ ARCHITECTURE estrutural OF fluxo_dados IS
     -- ID --
 
     -- Codigos da palavra de controle:
+    ALIAS lui          : STD_LOGIC IS pontosDeControle(11);
     ALIAS sel_mux_jump : STD_LOGIC IS pontosDeControle(9);
 
     -- Parsing da instrucao
@@ -49,7 +51,7 @@ ARCHITECTURE estrutural OF fluxo_dados IS
     SIGNAL enderecoC_ID                            : STD_LOGIC_VECTOR(REGBANK_ADDR_WIDTH - 1 DOWNTO 0);
 
     -- Sinais do registrador intermediário 
-    SIGNAL IDEX_saida : STD_LOGIC_VECTOR(4 * DATA_WIDTH + 2 * REGBANK_ADDR_WIDTH + CONTROLWORD_WIDTH - 1 DOWNTO 0);
+    SIGNAL IDEX_saida : STD_LOGIC_VECTOR(4 * DATA_WIDTH + 2 * REGBANK_ADDR_WIDTH + CONTROLWORD_WIDTH - 2 DOWNTO 0);
     -- 148 ~ 117: IFID_saida(63 DOWNTO 32) = PC+4 
     -- 116 ~  85: dadoLidoA_ID 
     --  84 ~  53: dadoLidoB_ID
@@ -136,6 +138,9 @@ BEGIN
     escreveRAM_out         <= escreve_RAM;
     pc_ex                  <= ID_EX_PCmais4;
 
+    ULA_A_out <= ID_EX_DadoLidoA;
+    ULA_B_out <= ID_EX_DadoLidoB;
+
     ---------------------------------------------------------------
 
     opcode <= IFID_saida (31 DOWNTO 26);
@@ -199,10 +204,11 @@ BEGIN
         (
             clk       => clk,
             instrucao => IFID_saida(31 DOWNTO 0),
+            lui       => lui,
             -- saidas
             saidaA       => dadoLidoA_ID,
             saidaB       => dadoLidoB_ID,
-            imediato_ext => imediato_ID,
+            imed_ext_lui => imediato_ID,
             -- sinais etapa de escrita
             enderecoC    => MEM_WB_enderecoC, -- tem q vir da etapa write back
             dadoEscritaC => dadoEscrita,      -- vem da etapa write back
@@ -211,7 +217,7 @@ BEGIN
 
     ID_EX : ENTITY work.registrador
         GENERIC MAP(
-            NUM_BITS => 4 * DATA_WIDTH + 2 * REGBANK_ADDR_WIDTH + CONTROLWORD_WIDTH
+            NUM_BITS => 4 * DATA_WIDTH + 2 * REGBANK_ADDR_WIDTH + CONTROLWORD_WIDTH - 1
             ) PORT MAP(
             clk     => clk,
             enable  => '1',
@@ -222,7 +228,7 @@ BEGIN
             imediato_ID &
             RT_addr_ID &
             RD_addr_ID &
-            pontosDeControle,
+            pontosDeControle(10 DOWNTO 0),
             data_out => IDEX_saida
         );
 

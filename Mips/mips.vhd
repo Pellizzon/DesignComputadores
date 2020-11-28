@@ -13,7 +13,8 @@ ENTITY mips IS
         -- sinais para depuração waveforms
         prox_pc, escrita_C, endEscrita_RAM, dadoEscrita_RAM, pc_ex_out : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
         endereco_C                                                     : OUT STD_LOGIC_VECTOR(REGBANK_ADDR_WIDTH - 1 DOWNTO 0);
-        wrC, wrRAM                                                     : OUT STD_LOGIC
+        wrC, wrRAM                                                     : OUT STD_LOGIC;
+		  ULA_B_out, ULA_A_out : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0)
 --        SW                                 : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
 --        KEY                                : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
 --        HEX0, HEX1, HEX2, HEX3, HEX4, HEX5 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
@@ -62,7 +63,9 @@ BEGIN
             enderecoC_out          => enderecoC_out,
             dadoEscritaC_out       => dadoEscritaC_out,
             escreveC_out           => escreveC_out,
-            pc_ex                  => pc_ex
+            pc_ex                  => pc_ex,
+				ULA_B_out => ULA_B_out , 
+				ULA_A_out =>ULA_A_out
         );
 		  
 	UC : ENTITY work.UC

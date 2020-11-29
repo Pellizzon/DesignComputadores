@@ -26,4 +26,8 @@ BEGIN
 
     estendeSinal_OUT <= (larguraDadoSaida - 1 DOWNTO larguraDadoEntrada => '0') & estendeSinal_IN WHEN selORI_ANDI = '1' ELSE
         estendeSinal_OUT_s;
+
+    -- Poderia ter sido implementado outro estensor de sinal que preenche de zeros, os bits 31 - 16 para 
+    -- o caso ORI e ANDI, e depois usar o sinal selORI_ANDI em um mux. A implementação desse jeito era mais facil
+    -- e o resultado deveria ser o mesmo...
 END ARCHITECTURE;

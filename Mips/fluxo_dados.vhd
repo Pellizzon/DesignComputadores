@@ -163,10 +163,9 @@ BEGIN
 
     ULA_A_out <= ID_EX_DadoLidoA;
     ULA_B_out <= ID_EX_DadoLidoB;
-
     ---------------------------------------------------------------
 
-    opcode <= IFID_saida (31 DOWNTO 26);
+    opcode <= IFID_saida(31 DOWNTO 26);
 
     -- Lógica do PC
 
@@ -196,18 +195,16 @@ BEGIN
             saida    => PC_prox
         );
 
-    -- Estágios
-
-    PC_4_concat_imed <= IFID_saida(63 DOWNTO 60) & saida_shift_jump;
-
     shift_jump : ENTITY work.shift2
         GENERIC MAP(
             larguraDado => 26
         )
         PORT MAP(
             shift_IN  => IFID_saida (25 DOWNTO 0),
-            shift_OUT => saida_shift_jump
+            shift_OUT => saida_shift_jump -- imed & "00"
         );
+
+    PC_4_concat_imed <= IFID_saida(63 DOWNTO 60) & saida_shift_jump; -- PC+4[31:28] & imed & "00"
 
     IFE : ENTITY work.etapa_busca
         GENERIC MAP(
@@ -215,7 +212,8 @@ BEGIN
         )
         PORT MAP
         (
-            clk     => clk,
+            clk => clk,
+            -- entrada
             PC_prox => PC_prox,
             -- saidas
             instrucao => instrucao_IF,
@@ -237,17 +235,17 @@ BEGIN
         PORT MAP
         (
             clk         => clk,
-            instrucao   => IFID_saida(31 DOWNTO 0),
-            lui         => lui,
-            selORI_ANDI => selORI_ANDI,
+            instrucao   => IFID_saida(31 DOWNTO 0), -- vem do registrador IF_ID
+            lui         => lui,                     -- vem da propria UC
+            selORI_ANDI => selORI_ANDI,             -- vem da propria UC
             -- saidas
-            saidaA       => dadoLidoA_ID,
-            saidaB       => dadoLidoB_ID,
-            imed_ext_lui => imediato_ID,
+            saidaA       => dadoLidoA_ID, -- vai para o proximo registrador, ID_EX
+            saidaB       => dadoLidoB_ID, -- vai para o proximo registrador, ID_EX
+            imed_ext_lui => imediato_ID,  -- vai para o proximo registrador, ID_EX
             -- sinais etapa de escrita
-            enderecoC    => MEM_WB_enderecoC, -- tem q vir da etapa write back
+            enderecoC    => MEM_WB_enderecoC, -- vem da etapa write back
             dadoEscritaC => dadoEscrita,      -- vem da etapa write back
-            escreveC     => MEM_WB_RegWrite
+            escreveC     => MEM_WB_RegWrite   -- ponto de controle que "passa para frente", vem da etapa write back
         );
 
     ID_EX : ENTITY work.registrador
@@ -274,9 +272,9 @@ BEGIN
             larguraDados => REGBANK_ADDR_WIDTH
         )
         PORT MAP(
-            entradaA => ID_EX_RT_ADDR,
-            entradaB => ID_EX_RD_ADDR,
-            seletor  => ID_EX_RT_RT_SEL,
+            entradaA => ID_EX_RT_ADDR,   -- endereco RT, vem do registrador ID_EX
+            entradaB => ID_EX_RD_ADDR,   -- endereco RD, vem do registrador ID_EX
+            seletor  => ID_EX_RT_RT_SEL, -- ponto de controle, vem da etapa anterior
             saida    => saida_mux_rd_rt
         );
 
@@ -285,46 +283,50 @@ BEGIN
             larguraDados => REGBANK_ADDR_WIDTH
         )
         PORT MAP(
-            entradaA => saida_mux_rd_rt,
-            entradaB => b"11111",
-            seletor  => sel_jal,
-            saida    => enderecoC_ID
-        );
+            entradaA => saida_mux_rd_rt, -- saida do mux rd rt
+            entradaB => b"11111",        -- registrador 31, para jal
+            seletor  => sel_jal,         -- ponto de controle, vem da etapa anterior
+            saida    => enderecoC_ID     -- endereco onde sera escrito no banco de registrador. 
+        );                           -- (endereco passado pra "frente" ate write back)
 
     UCULA : ENTITY work.UC_ULA
         PORT MAP
         (
-            funct  => ID_EX_FUNCT,
-            ALUop  => ULAop,
-            ALUctr => ULActr,
-            jr     => jr
+            -- entradas
+            funct => ID_EX_FUNCT, -- funct, vem da etapa anterior
+            ALUop => ULAop,       -- determinado pelo ponto de controle da etapa anterior
+            -- saidas
+            ALUctr => ULActr, -- define o que vai ser executado na ULA
+            jr     => jr      -- sinal que informa sobre jr (volta pra UC para fazer jr). Uma das saidas do FD
         );
 
     EX : ENTITY work.etapa_execucao
         PORT MAP
         (
-            PC_mais_4 => ID_EX_PCmais4,
-            imediato  => ID_EX_ImediatoExt,
-            dadoLidoA => ID_EX_DadoLidoA,
-            dadoLidoB => ID_EX_DadoLidoB,
+            -- entradas
+            PC_mais_4 => ID_EX_PCmais4,     -- vem da etapa anterior
+            imediato  => ID_EX_ImediatoExt, -- vem da etapa anterior
+            dadoLidoA => ID_EX_DadoLidoA,   -- vem da etapa anterior
+            dadoLidoB => ID_EX_DadoLidoB,   -- vem da etapa anterior
             -- controle
-            ULActr            => ULActr,
-            sel_beq           => sel_beq,
-            sel_bne           => sel_bne,
-            sel_mux_banco_ula => sel_mux_banco_ula,
+            ULActr            => ULActr,            -- vem da UC da ULA
+            sel_beq           => sel_beq,           -- ponto de controle "carregado" de etapas anteriores
+            sel_bne           => sel_bne,           -- ponto de controle "carregado" de etapas anteriores
+            sel_mux_banco_ula => sel_mux_banco_ula, -- ponto de controle "carregado" de etapas anteriores
             -- saidas
-            PC_beq      => PC_beq_EX,
-            saida_ula   => saida_ula_EX,
-            sel_mux_beq => sel_mux_beq
+            PC_beq      => PC_beq_EX,    -- pc do beq/bne, usado no mux_prox_pc
+            saida_ula   => saida_ula_EX, -- saida da ula (valor ou endereco da RAM), passa para proxima etapa
+            sel_mux_beq => sel_mux_beq   -- parte do seletor do mux_prox_pc
         );
 
+    -- PC+8 usado para instrução JAL
     Somador : ENTITY work.soma4
         GENERIC MAP(
             larguraDados => DATA_WIDTH
         )
         PORT MAP(
-            entrada => ID_EX_PCmais4,
-            saida   => PCmais8
+            entrada => ID_EX_PCmais4, -- vem da etapa anterior
+            saida   => PCmais8        -- passa para proximas etapas, escrever PC+8 no reg 31 (instrucao JAL)
         );
 
     EX_MEM : ENTITY work.registrador
@@ -349,14 +351,15 @@ BEGIN
     MEM : ENTITY work.etapa_memoria
         PORT MAP
         (
-            clk       => clk,
-            saida_ula => EX_MEM_saidaULA,
-            dadoLidoB => EX_MEM_dadoLidoB,
+            clk => clk,
+            -- entradas
+            saida_ula => EX_MEM_saidaULA,  -- dado da etapa anterior
+            dadoLidoB => EX_MEM_dadoLidoB, -- dado "carregado" de etapas anteriores
             -- controle
-            leitura_RAM => leitura_RAM,
-            escreve_RAM => escreve_RAM,
+            leitura_RAM => leitura_RAM, -- ponto de controle, vem de etapas anteriores
+            escreve_RAM => escreve_RAM, -- ponto de controle, vem de etapas anteriores
             -- saidas
-            dadoEscrita => saida_RAM
+            dadoEscrita => saida_RAM -- o que foi lido da RAM
         );
 
     MEM_WB : ENTITY work.registrador
@@ -381,10 +384,10 @@ BEGIN
             larguraDados => DATA_WIDTH
         )
         PORT MAP(
-            entradaA => MEM_WB_saidaULA,
-            entradaB => MEM_WB_saidaRAM,
-            seletor  => MEM_WB_muxULA_Mem,
-            saida    => dadoEscrita_ulamem
+            entradaA => MEM_WB_saidaULA,   -- vem da etapa anterior, "carregado" desde a etapa de execucao
+            entradaB => MEM_WB_saidaRAM,   -- vem da etapa anterior, leitura da RAM
+            seletor  => MEM_WB_muxULA_Mem, -- ponto de controle, "carregado"
+            saida    => dadoEscrita_ulamem -- dado a ser escrito no banco de registradores
         );
 
     mux_UlaMem_JAL : ENTITY work.muxGenerico2
@@ -392,10 +395,10 @@ BEGIN
             larguraDados => DATA_WIDTH
         )
         PORT MAP(
-            entradaA => dadoEscrita_ulamem,
-            entradaB => MEM_WB_PCmais8,
-            seletor  => MEM_WB_sel_jal,
-            saida    => dadoEscrita
+            entradaA => dadoEscrita_ulamem, -- dado do mux Ula mem (valor da ula ou RAM)
+            entradaB => MEM_WB_PCmais8,     -- PC+8 para fazer jal
+            seletor  => MEM_WB_sel_jal,     -- ponto de controle, "carregado"
+            saida    => dadoEscrita         -- o que sera escrito no banco de registradores
         );
 
 END ARCHITECTURE;

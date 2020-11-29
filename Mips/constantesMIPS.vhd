@@ -6,7 +6,7 @@ PACKAGE constantesMIPS IS
 
     CONSTANT FUNCT_WIDTH        : NATURAL := 6;
     CONSTANT OPCODE_WIDTH       : NATURAL := 6;
-    CONSTANT CONTROLWORD_WIDTH  : NATURAL := 11 + 4;
+    CONSTANT CONTROLWORD_WIDTH  : NATURAL := 11 + 5;
     CONSTANT DATA_WIDTH         : NATURAL := 32;
     CONSTANT ADDR_WIDTH         : NATURAL := 32;
     CONSTANT REGBANK_ADDR_WIDTH : NATURAL := 5;
@@ -28,6 +28,7 @@ PACKAGE constantesMIPS IS
     CONSTANT functAND : funct_t := "100100";
     CONSTANT functOR  : funct_t := "100101";
     CONSTANT functSLT : funct_t := "101010";
+    CONSTANT functJR  : funct_t := "001000";
 
     CONSTANT opCodeTipoR : opCode_t := "000000";
     --

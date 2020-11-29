@@ -10,6 +10,7 @@ ENTITY fluxo_dados IS
         clk              : IN STD_LOGIC;
         pontosDeControle : IN STD_LOGIC_VECTOR(CONTROLWORD_WIDTH - 1 DOWNTO 0);
         opcode           : OUT STD_LOGIC_VECTOR(OPCODE_WIDTH - 1 DOWNTO 0);
+        jr               : OUT STD_LOGIC;
         -- sinais para depuração
         PC_prox_out, dadoEscritaC_out, enderecoEscritaRAM_out, dadoEscritoRAM_out, pc_ex : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
         enderecoC_out                                                                    : OUT STD_LOGIC_VECTOR(REGBANK_ADDR_WIDTH - 1 DOWNTO 0);
@@ -38,7 +39,8 @@ ARCHITECTURE estrutural OF fluxo_dados IS
     -- ID --
 
     -- Codigos da palavra de controle:
-    ALIAS jal          : STD_LOGIC IS pontosDeControle(13);
+    ALIAS sel_jr       : STD_LOGIC IS pontosDeControle(15);
+    ALIAS jal          : STD_LOGIC IS pontosDeControle(14);
     ALIAS bne          : STD_LOGIC IS pontosDeControle(13);
     ALIAS selORI_ANDI  : STD_LOGIC IS pontosDeControle(12);
     ALIAS lui          : STD_LOGIC IS pontosDeControle(11);
@@ -81,6 +83,8 @@ ARCHITECTURE estrutural OF fluxo_dados IS
     ALIAS ID_EX_ctrlPointsMEM_WriteMem    : STD_LOGIC IS IDEX_saida(1);
 
     -- EX --
+
+    SIGNAL saida_mux_PC_prox : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
 
     ALIAS ID_EX_pontosDeControle : STD_LOGIC_VECTOR(8 DOWNTO 0) IS IDEX_saida(8 DOWNTO 0);
 
@@ -144,7 +148,7 @@ ARCHITECTURE estrutural OF fluxo_dados IS
 
     -- WB --
     SIGNAL dadoEscrita_ulamem : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
-	 SIGNAL dadoEscrita: STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
+    SIGNAL dadoEscrita        : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
 BEGIN
 
     -- Sinais para depuração
@@ -178,6 +182,17 @@ BEGIN
             entradaB => PC_4_concat_imed,
             entradaC => PC_beq_EX,
             seletor  => sel_mux_prox_pc,
+            saida    => saida_mux_PC_prox
+        );
+
+    mux_proxpc_jr : ENTITY work.muxGenerico2
+        GENERIC MAP(
+            larguraDados => DATA_WIDTH
+        )
+        PORT MAP(
+            entradaA => saida_mux_PC_prox,
+            entradaB => ID_EX_DadoLidoA,
+            seletor  => sel_jr,
             saida    => PC_prox
         );
 
@@ -281,7 +296,8 @@ BEGIN
         (
             funct  => ID_EX_FUNCT,
             ALUop  => ULAop,
-            ALUctr => ULActr
+            ALUctr => ULActr,
+            jr     => jr
         );
 
     EX : ENTITY work.etapa_execucao

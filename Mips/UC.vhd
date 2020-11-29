@@ -4,6 +4,7 @@ USE work.constantesMIPS.ALL;
 
 ENTITY UC IS
     PORT (
+        jr               : IN STD_LOGIC;
         opcode           : IN STD_LOGIC_VECTOR(OPCODE_WIDTH - 1 DOWNTO 0);
         pontosDeControle : OUT STD_LOGIC_VECTOR(CONTROLWORD_WIDTH - 1 DOWNTO 0)
     );
@@ -11,6 +12,7 @@ END ENTITY;
 
 ARCHITECTURE bhv OF UC IS
 
+    ALIAS sel_jr            : STD_LOGIC IS pontosDeControle(15);
     ALIAS jal               : STD_LOGIC IS pontosDeControle(14);
     ALIAS sel_bne           : STD_LOGIC IS pontosDeControle(13);
     ALIAS selORI_ANDI       : STD_LOGIC IS pontosDeControle(12);
@@ -26,6 +28,9 @@ ARCHITECTURE bhv OF UC IS
     ALIAS escreve_RC        : STD_LOGIC IS pontosDeControle(0);
 
 BEGIN
+
+    sel_jr <= '1' WHEN jr = '1' AND opCode = opCodeTipoR ELSE
+        '0';
 
     jal <= '1' WHEN opCode = opCodeJAL ELSE
         '0';

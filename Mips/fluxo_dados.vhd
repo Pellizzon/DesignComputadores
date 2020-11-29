@@ -38,6 +38,7 @@ ARCHITECTURE estrutural OF fluxo_dados IS
     -- ID --
 
     -- Codigos da palavra de controle:
+    ALIAS jal          : STD_LOGIC IS pontosDeControle(13);
     ALIAS bne          : STD_LOGIC IS pontosDeControle(13);
     ALIAS selORI_ANDI  : STD_LOGIC IS pontosDeControle(12);
     ALIAS lui          : STD_LOGIC IS pontosDeControle(11);
@@ -53,7 +54,8 @@ ARCHITECTURE estrutural OF fluxo_dados IS
     SIGNAL enderecoC_ID                            : STD_LOGIC_VECTOR(REGBANK_ADDR_WIDTH - 1 DOWNTO 0);
 
     -- Sinais do registrador intermediário 
-    SIGNAL IDEX_saida : STD_LOGIC_VECTOR(4 * DATA_WIDTH + 2 * REGBANK_ADDR_WIDTH + 12 - 1 DOWNTO 0);
+    SIGNAL IDEX_saida : STD_LOGIC_VECTOR(4 * DATA_WIDTH + 2 * REGBANK_ADDR_WIDTH + 13 - 1 DOWNTO 0);
+    --       150: jal
     --       149: sel_bne 
     -- 148 ~ 117: IFID_saida(63 DOWNTO 32) = PC+4 
     -- 116 ~  85: dadoLidoA_ID 
@@ -62,6 +64,7 @@ ARCHITECTURE estrutural OF fluxo_dados IS
     --  20 ~  16: RT_addr_ID &
     --  15 ~  11: RD_addr_ID &
     --  10 ~   0: pontosDeControle(10 DOWNTO 0),
+    ALIAS sel_jal           : STD_LOGIC IS IDEX_saida(150);
     ALIAS sel_bne           : STD_LOGIC IS IDEX_saida(149);
     ALIAS ID_EX_PCmais4     : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0) IS IDEX_saida(148 DOWNTO 117);
     ALIAS ID_EX_DadoLidoA   : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0) IS IDEX_saida(116 DOWNTO 85);
@@ -93,8 +96,13 @@ ARCHITECTURE estrutural OF fluxo_dados IS
     SIGNAL PC_beq_EX, saida_ula_EX : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
     SIGNAL sel_mux_beq             : STD_LOGIC;
 
+    SIGNAL saida_mux_rd_rt : STD_LOGIC_VECTOR(REGBANK_ADDR_WIDTH - 1 DOWNTO 0);
+    SIGNAL PCmais8         : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
+
     -- Sinais do registrador intermediário 
-    SIGNAL EXMEM_saida : STD_LOGIC_VECTOR(2 * DATA_WIDTH + REGBANK_ADDR_WIDTH + 4 - 1 DOWNTO 0);
+    SIGNAL EXMEM_saida : STD_LOGIC_VECTOR(3 * DATA_WIDTH + REGBANK_ADDR_WIDTH + 5 - 1 DOWNTO 0);
+    --105  ~ 74: PCmais8
+    --       73: sel_jal
     --  72 ~ 42: saida_ula_EX 
     --  41 ~ 10: ID_EX_DadoLidoB 
     --  8 ~   4: enderecoC_ID 
@@ -102,6 +110,8 @@ ARCHITECTURE estrutural OF fluxo_dados IS
     --        2: ID_EX_ctrlPointsMEM_ReadMem 
     --        1: ID_EX_ctrlPointsWB_selMuxUlaMEM 
     --        0: ID_EX_ctrlPointsWB_RegWrite
+    ALIAS EX_MEM_PCmais8   : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0) IS EXMEM_saida(105 DOWNTO 74);
+    ALIAS EX_MEM_sel_jal   : STD_LOGIC IS EXMEM_saida(73);
     ALIAS EX_MEM_saidaULA  : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0) IS EXMEM_saida(72 DOWNTO 41);
     ALIAS EX_MEM_dadoLidoB : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0) IS EXMEM_saida(40 DOWNTO 9);
     ALIAS EX_MEM_enderecoC : STD_LOGIC_VECTOR(REGBANK_ADDR_WIDTH - 1 DOWNTO 0) IS EXMEM_saida(8 DOWNTO 4);
@@ -116,12 +126,16 @@ ARCHITECTURE estrutural OF fluxo_dados IS
     -- Sinais de saida
     SIGNAL saida_RAM : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
     -- Sinais do registrador intermediário 
-    SIGNAL MEMWB_saida : STD_LOGIC_VECTOR(71 - 1 DOWNTO 0);
+    SIGNAL MEMWB_saida : STD_LOGIC_VECTOR(104 - 1 DOWNTO 0);
+    --103 ~ 72: EX_MEM_PCmais8
+    --      71: EX_MEM_sel_jal
     -- 70 ~ 39: EX_MEM_saidaULA 
     -- 38 ~  7: saida_RAM 
     --  6 ~  2: EX_MEM_enderecoC 
     --       1: EX_MEM_ctrlPointsWB_ULA_MEM 
     --       0: EX_MEM_ctrlPointsWB_RegWrite
+    ALIAS MEM_WB_PCmais8    : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0) IS MEMWB_saida(103 DOWNTO 72);
+    ALIAS MEM_WB_sel_jal    : STD_LOGIC IS MEMWB_saida(71);
     ALIAS MEM_WB_saidaULA   : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0) IS MEMWB_saida(70 DOWNTO 39);
     ALIAS MEM_WB_saidaRAM   : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0) IS MEMWB_saida(38 DOWNTO 7);
     ALIAS MEM_WB_enderecoC  : STD_LOGIC_VECTOR(REGBANK_ADDR_WIDTH - 1 DOWNTO 0) IS MEMWB_saida(6 DOWNTO 2);
@@ -129,7 +143,8 @@ ARCHITECTURE estrutural OF fluxo_dados IS
     ALIAS MEM_WB_RegWrite   : STD_LOGIC IS MEMWB_saida(0);
 
     -- WB --
-    SIGNAL dadoEscrita : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
+    SIGNAL dadoEscrita_ulamem : STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
+	 SIGNAL dadoEscrita: STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
 BEGIN
 
     -- Sinais para depuração
@@ -222,12 +237,13 @@ BEGIN
 
     ID_EX : ENTITY work.registrador
         GENERIC MAP(
-            NUM_BITS => 4 * DATA_WIDTH + 2 * REGBANK_ADDR_WIDTH + 12
+            NUM_BITS => 4 * DATA_WIDTH + 2 * REGBANK_ADDR_WIDTH + 13
             ) PORT MAP(
             clk     => clk,
             enable  => '1',
             reset   => '1',
-            data_in => bne &
+            data_in => jal &
+            bne &
             IFID_saida(63 DOWNTO 32) &
             dadoLidoA_ID &
             dadoLidoB_ID &
@@ -246,6 +262,17 @@ BEGIN
             entradaA => ID_EX_RT_ADDR,
             entradaB => ID_EX_RD_ADDR,
             seletor  => ID_EX_RT_RT_SEL,
+            saida    => saida_mux_rd_rt
+        );
+
+    mux_RdRt_jal : ENTITY work.muxGenerico2
+        GENERIC MAP(
+            larguraDados => REGBANK_ADDR_WIDTH
+        )
+        PORT MAP(
+            entradaA => saida_mux_rd_rt,
+            entradaB => b"11111",
+            seletor  => sel_jal,
             saida    => enderecoC_ID
         );
 
@@ -275,14 +302,25 @@ BEGIN
             sel_mux_beq => sel_mux_beq
         );
 
+    Somador : ENTITY work.soma4
+        GENERIC MAP(
+            larguraDados => DATA_WIDTH
+        )
+        PORT MAP(
+            entrada => ID_EX_PCmais4,
+            saida   => PCmais8
+        );
+
     EX_MEM : ENTITY work.registrador
         GENERIC MAP(
-            NUM_BITS => 2 * DATA_WIDTH + REGBANK_ADDR_WIDTH + 4
+            NUM_BITS => 3 * DATA_WIDTH + REGBANK_ADDR_WIDTH + 5
             ) PORT MAP(
             clk     => clk,
             enable  => '1',
             reset   => '1',
-            data_in => saida_ula_EX &
+            data_in => PCmais8 &
+            sel_jal &
+            saida_ula_EX &
             ID_EX_DadoLidoB &
             enderecoC_ID &
             ID_EX_ctrlPointsMEM_WriteMem &
@@ -307,12 +345,14 @@ BEGIN
 
     MEM_WB : ENTITY work.registrador
         GENERIC MAP(
-            NUM_BITS => 71
+            NUM_BITS => 104
             ) PORT MAP(
             clk     => clk,
             enable  => '1',
             reset   => '1',
-            data_in => EX_MEM_saidaULA &
+            data_in => EX_MEM_PCmais8 &
+            EX_MEM_sel_jal &
+            EX_MEM_saidaULA &
             saida_RAM &
             EX_MEM_enderecoC &
             EX_MEM_ctrlPointsWB_ULA_MEM &
@@ -328,6 +368,17 @@ BEGIN
             entradaA => MEM_WB_saidaULA,
             entradaB => MEM_WB_saidaRAM,
             seletor  => MEM_WB_muxULA_Mem,
+            saida    => dadoEscrita_ulamem
+        );
+
+    mux_UlaMem_JAL : ENTITY work.muxGenerico2
+        GENERIC MAP(
+            larguraDados => DATA_WIDTH
+        )
+        PORT MAP(
+            entradaA => dadoEscrita_ulamem,
+            entradaB => MEM_WB_PCmais8,
+            seletor  => MEM_WB_sel_jal,
             saida    => dadoEscrita
         );
 

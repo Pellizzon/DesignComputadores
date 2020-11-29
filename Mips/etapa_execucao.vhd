@@ -26,7 +26,7 @@ ARCHITECTURE estrutural OF etapa_execucao IS
 
 BEGIN
 
-    sel_mux_beq <= (sel_beq AND Z_out) AND (sel_bne AND NOT(Z_out));
+    sel_mux_beq <= (sel_beq AND Z_out) OR (sel_bne AND NOT(Z_out));
 
     -- Lógica da ULA
     ULA : ENTITY work.ULA

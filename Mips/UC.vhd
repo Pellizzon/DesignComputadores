@@ -11,6 +11,7 @@ END ENTITY;
 
 ARCHITECTURE bhv OF UC IS
 
+    ALIAS jal               : STD_LOGIC IS pontosDeControle(14);
     ALIAS sel_bne           : STD_LOGIC IS pontosDeControle(13);
     ALIAS selORI_ANDI       : STD_LOGIC IS pontosDeControle(12);
     ALIAS lui               : STD_LOGIC IS pontosDeControle(11);
@@ -26,6 +27,9 @@ ARCHITECTURE bhv OF UC IS
 
 BEGIN
 
+    jal <= '1' WHEN opCode = opCodeJAL ELSE
+        '0';
+
     sel_bne <= '1' WHEN opCode = opCodeBNE ELSE
         '0';
 
@@ -40,6 +44,7 @@ BEGIN
         '0';
 
     sel_mux_jump <= '1' WHEN opCode = opCodeTipoJ ELSE
+        '1' WHEN opCode = opCodeJAL ELSE
         '0';
 
     ULAop <= readFunctULA WHEN opcode = opCodeTipoR ELSE

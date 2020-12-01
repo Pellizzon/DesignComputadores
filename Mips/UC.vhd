@@ -92,6 +92,7 @@ BEGIN
         '1' WHEN opCode = opCodeANDI ELSE
         '1' WHEN opCode = opCodeORI ELSE
         '1' WHEN opCode = opCodeSLTI ELSE
+		  '1' WHEN opCode = opCodeJAL ELSE
         '0';
 
 END bhv;

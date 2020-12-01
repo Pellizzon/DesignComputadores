@@ -109,12 +109,12 @@ ARCHITECTURE assincrona_pipeline OF ROM IS
     tmp(4) := x"012A4025"; --or $t0 $t1 $t2      ($t0 := 0x0000000B)
     tmp(5) := x"3C08FFFF"; --lui $x $t0 0xFFFF   ($t0 := 0xFFFF0000)
     tmp(6) := x"2128000A"; --addi $t1 $t0 0x000A ($t0 := 0x00000014)
-    tmp(7) := x"31080013"; --andi $t0 $t0 0x0013 HAZARD  ($t0 := 0x00000000)
+    tmp(7) := x"31080013"; --andi $t0 $t0 0x0013 HAZARD  ($t0 := 0x00000002) (leu t0=A do pc=3)
     tmp(8) := x"35880007"; --ori $t4 $t0 0x0007  ($t0 := 0x0000000F)
     tmp(9) := x"2928FFFF"; --slti $t1 $t0 0xFFFF ($t0 := 0x00000000)
 
     tmp(10) := x"012A402A"; --slt $t0 $t1 $t2     ($t0 := 0x00000001)
-    tmp(11) := x"010A4020"; --add $t0 $t0 $t2     HAZARD  ($t0 := 0x0000000B)
+    tmp(11) := x"010A4020"; --add $t0 $t0 $t2     HAZARD  ($t0 := 0x0000000D) (B + 2 leu t0 = 2 pc=7)
     tmp(12) := x"110BFFFE"; --beq $t0 $t3 0xFFFE  HAZARD  (pc := #15)
     tmp(13) := x"08000010"; --j 0x000010          (pc := #16)
 
@@ -140,7 +140,7 @@ ARCHITECTURE assincrona_pipeline OF ROM IS
     --segunda execução:      ($t0 := 0x00000017)
     tmp(48) := x"110BFFFB"; --beq $t0 $t3 0xFFFB  (pc := #44)
     --segunda execução:      (pc := #49)
-    tmp(51) := x"0C00003C"; --jal 0x00003C        (pc := #60)
+    tmp(51) := x"0C000039"; --jal 0x000039        (pc := #57) terminar wb para conseguir fazer jr
     tmp(52) := x"00000000"; --nop
     tmp(53) := x"08000000"; --j 0x000000          (pc := #0)
     tmp(54) := x"00000000"; --nop

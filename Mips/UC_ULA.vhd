@@ -6,7 +6,8 @@ ENTITY UC_ULA IS
     PORT (
         funct  : IN STD_LOGIC_VECTOR(FUNCT_WIDTH - 1 DOWNTO 0);
         ALUop  : IN STD_LOGIC_VECTOR(ALU_OP_WIDTH - 1 DOWNTO 0);
-        ALUctr : OUT STD_LOGIC_VECTOR(CTRL_ALU_WIDTH - 1 DOWNTO 0)
+        ALUctr : OUT STD_LOGIC_VECTOR(CTRL_ALU_WIDTH - 1 DOWNTO 0);
+        jr     : OUT STD_LOGIC
     );
 END ENTITY;
 
@@ -26,5 +27,9 @@ BEGIN
         ulaCtrlAnd WHEN (ALUop_s = aluOpAnd) ELSE
         ulaCtrlOr WHEN (ALUop_s = aluOpOr) ELSE
         ulaCtrlSlt WHEN (ALUop_s = aluOpSlt) ELSE
+        ulaCtrlLui WHEN (ALUop_s = aluOpLui) ELSE
         (OTHERS => '0');
+
+    jr <= '1' WHEN ALUop = readFunctULA AND funct = functJR ELSE
+        '0';
 END bhv;

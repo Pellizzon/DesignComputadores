@@ -14,8 +14,7 @@ ENTITY fluxo_dados IS
         -- sinais para depuração
         PC_prox_out, dadoEscritaC_out, enderecoEscritaRAM_out, dadoEscritoRAM_out, pc_ex : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
         enderecoC_out                                                                    : OUT STD_LOGIC_VECTOR(REGBANK_ADDR_WIDTH - 1 DOWNTO 0);
-        escreveC_out, escreveRAM_out                                                     : OUT STD_LOGIC;
-        ULA_B_out, ULA_A_out                                                             : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0)
+        escreveC_out, escreveRAM_out                                                     : OUT STD_LOGIC
     );
 END ENTITY;
 
@@ -160,9 +159,6 @@ BEGIN
     dadoEscritoRAM_out     <= EX_MEM_dadoLidoB;
     escreveRAM_out         <= escreve_RAM;
     pc_ex                  <= ID_EX_PCmais4;
-
-    ULA_A_out <= ID_EX_DadoLidoA;
-    ULA_B_out <= ID_EX_DadoLidoB;
     ---------------------------------------------------------------
 
     opcode <= IFID_saida(31 DOWNTO 26);

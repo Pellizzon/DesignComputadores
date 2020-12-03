@@ -12,9 +12,9 @@ ENTITY fluxo_dados IS
         opcode           : OUT STD_LOGIC_VECTOR(OPCODE_WIDTH - 1 DOWNTO 0);
         jr               : OUT STD_LOGIC;
         -- sinais para depuração
-        PC_prox_out, dadoEscritaC_out, enderecoEscritaRAM_out, dadoEscritoRAM_out, pc_ex : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
-        enderecoC_out                                                                    : OUT STD_LOGIC_VECTOR(REGBANK_ADDR_WIDTH - 1 DOWNTO 0);
-        escreveC_out, escreveRAM_out                                                     : OUT STD_LOGIC
+        PC_out, dadoEscritaC_out, enderecoEscritaRAM_out, dadoEscritoRAM_out : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
+        enderecoC_out                                                        : OUT STD_LOGIC_VECTOR(REGBANK_ADDR_WIDTH - 1 DOWNTO 0);
+        escreveC_out, escreveRAM_out                                         : OUT STD_LOGIC
     );
 END ENTITY;
 
@@ -151,14 +151,13 @@ ARCHITECTURE estrutural OF fluxo_dados IS
 BEGIN
 
     -- Sinais para depuração
-    PC_prox_out            <= PC_prox;
+--    PC_prox_out            <= PC_prox;
     enderecoC_out          <= MEM_WB_enderecoC;
     dadoEscritaC_out       <= dadoEscrita;
     escreveC_out           <= MEM_WB_RegWrite;
     enderecoEscritaRAM_out <= saida_ula_EX;
     dadoEscritoRAM_out     <= EX_MEM_dadoLidoB;
     escreveRAM_out         <= escreve_RAM;
-    pc_ex                  <= ID_EX_PCmais4;
     ---------------------------------------------------------------
 
     opcode <= IFID_saida(31 DOWNTO 26);
@@ -213,7 +212,8 @@ BEGIN
             PC_prox => PC_prox,
             -- saidas
             instrucao => instrucao_IF,
-            PC_mais_4 => PC_mais_4_IF
+            PC_mais_4 => PC_mais_4_IF,
+				PC_at     => PC_out
         );
 
     IF_ID : ENTITY work.registrador

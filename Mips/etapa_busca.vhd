@@ -9,7 +9,8 @@ ENTITY etapa_busca IS
     PORT (
         clk                  : IN STD_LOGIC;
         PC_prox              : IN STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
-        instrucao, PC_mais_4 : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0)
+        instrucao, PC_mais_4 : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0);
+		  PC_at                : OUT STD_LOGIC_VECTOR(DATA_WIDTH - 1 DOWNTO 0)
     );
 END ENTITY;
 
@@ -50,5 +51,7 @@ BEGIN
             endereco => PC_s(larguraROM - 1 DOWNTO 0),
             dado     => instrucao
         );
+		  
+	  PC_at <= PC_s;
 
 END ARCHITECTURE;

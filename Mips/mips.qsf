@@ -160,6 +160,7 @@ set_location_assignment PIN_U13 -to SW[0]
 set_location_assignment PIN_V13 -to SW[1]
 set_location_assignment PIN_T13 -to SW[2]
 
+set_global_assignment -name VHDL_FILE clock_generator.vhd
 set_global_assignment -name VHDL_FILE constantesMIPS.vhd
 set_global_assignment -name VHDL_FILE etapa_busca.vhd
 set_global_assignment -name VHDL_FILE fluxo_dados.vhd

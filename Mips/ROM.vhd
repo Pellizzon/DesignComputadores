@@ -114,11 +114,11 @@ ARCHITECTURE assincrona_pipeline OF ROM IS
     --segunda execução:      ($t0 := 0x00000017)
     tmp(48) := x"110BFFFB"; --beq $t0 $t3 0xFFFB  (pc := #44)
     --segunda execução:      (pc := #49)
-    tmp(51) := x"0C00003C"; --jal 0x00003C        (pc := #60)
+    tmp(51) := x"0C00003A"; --jal 0x00003A        (pc := #58)
     tmp(52) := x"00000000"; --nop
     tmp(53) := x"08000000"; --j 0x000000          (pc := #0)
     tmp(54) := x"00000000"; --nop
-
+	 
     tmp(60) := x"03E00008"; --jr $ra              (pc := #53)
     RETURN tmp;
   END initMemory;

@@ -72,7 +72,7 @@ BEGIN
             pontosDeControle => pontosDeControle);
 
     -- SW  2 1 0
-    --     0 0 0 = prox_pc
+    --     0 0 0 = pc
     --     0 0 1 = dado da etapa write back (saida do mux ULA_MEM)
     --     0 1 0 = endereco escrita RAM (saida ULA)
     --     0 1 1 = dado lido do banco B, após passar pelo reg EX/MEM
